@@ -4,7 +4,7 @@ import StayDuration from '../types/StayDuration.ts';
 
 const MaxStarsCount: number = 5;
 
-export type PlaceCardProps = {
+type PlaceCardProps = {
   isPremium: boolean;
   image: string;
   price: number;
@@ -64,4 +64,4 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export { PlaceCard };
+export default PlaceCard;

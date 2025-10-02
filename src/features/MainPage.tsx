@@ -1,4 +1,4 @@
-import { PlaceCard } from '../components/PlaceCard';
+import PlaceCard from '../components/PlaceCard';
 import PlaceCardType from '../types/PlaceCardType';
 import StayDuration from '../types/StayDuration';
 
@@ -60,7 +60,11 @@ const placeCards = [
   }
 ];
 
-function MainPage() : JSX.Element {
+type MainPageProps = {
+  placeOffersCount: number;
+}
+
+function MainPage({placeOffersCount}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -134,7 +138,7 @@ function MainPage() : JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{placeOffersCount} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
