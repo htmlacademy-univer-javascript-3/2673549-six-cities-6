@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 type RatingInputProps = {
-  rating: number,
-  setRating: (rating: number) => void
+  rating: number;
+  setRating: (rating: number) => void;
 }
 
 function RatingInput({rating, setRating}: RatingInputProps) {

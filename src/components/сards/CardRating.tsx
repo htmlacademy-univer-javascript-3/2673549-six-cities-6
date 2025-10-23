@@ -1,5 +1,5 @@
 type CardRating = {
-  rating: number
+  rating: number;
 }
 
 function CardRating({rating}: CardRating) {

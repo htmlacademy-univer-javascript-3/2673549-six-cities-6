@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 type BookmarkCardProps = {
-  isBookmarked: boolean
+  isBookmarked: boolean;
 }
 
 function CardBookmark({isBookmarked}: BookmarkCardProps) {

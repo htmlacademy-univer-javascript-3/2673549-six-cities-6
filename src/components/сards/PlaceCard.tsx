@@ -1,21 +1,21 @@
-import {Link} from "react-router-dom";
-import CardPremium from "./CardPremium.tsx";
-import MainOfferInformation from "types/offerTypes/MainOfferInformation";
-import CardBookmark from "./CardBookmark.tsx";
-import CardRating from "./CardRating.tsx";
-import {AppRoute} from "@constants";
+import {Link} from 'react-router-dom';
+import CardPremium from './CardPremium.tsx';
+import MainOfferInformation from 'types/offerTypes/MainOfferInformation';
+import CardBookmark from './CardBookmark.tsx';
+import CardRating from './CardRating.tsx';
+import {AppRoute} from '@constants';
 
 type PlaceCardProps = {
-  offer: MainOfferInformation,
-  onMouseEnter: () => void,
-  onMouseLeave: () => void
+  offer: MainOfferInformation;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
 function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCardProps): JSX.Element {
   return (
     <article className="cities__card place-card"
-             onMouseEnter={onMouseEnter}
-             onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <CardPremium isPremium={offer.isPremium}/>
       <div className="cities__image-wrapper place-card__image-wrapper">

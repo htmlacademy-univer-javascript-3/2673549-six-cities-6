@@ -1,12 +1,12 @@
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import CardPremium from './CardPremium.tsx';
 import CardBookmark from './CardBookmark';
 import CardRating from './CardRating';
 import {Offer} from 'types/offerTypes/Offer';
-import {AppRoute} from "@constants";
+import {AppRoute} from '@constants';
 
 type FavouriteCardProps = {
-  offer: Offer
+  offer: Offer;
 };
 
 function FavouriteCard({offer}: FavouriteCardProps) {
@@ -16,7 +16,8 @@ function FavouriteCard({offer}: FavouriteCardProps) {
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img className="place-card__image" src={offer.image} width="150" height="110"
-               alt="Place image"/>
+            alt="Place image"
+          />
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">

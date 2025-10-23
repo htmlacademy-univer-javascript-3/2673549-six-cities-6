@@ -2,12 +2,12 @@ import {Link} from 'react-router-dom';
 import Page from 'components/Page';
 import OffersList from 'components/OfferList';
 import {Offer} from 'types/offerTypes/Offer';
-import {AppRoute} from "@constants";
+import {AppRoute} from '@constants';
 
 
 type MainPageProps = {
   placeOffersCount: number;
-  offers: Offer[]
+  offers: Offer[];
 }
 
 function MainPage({placeOffersCount, offers}: MainPageProps): JSX.Element {

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 type PremiumProps = {
-  isPremium: boolean
+  isPremium: boolean;
 }
 
 function CardPremium({isPremium}: PremiumProps) {

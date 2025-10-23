@@ -2,7 +2,7 @@ import {Review} from 'types/offerTypes/Review.ts';
 import {GetMonthWithYear} from 'lib/DateUtils.ts';
 
 type ReviewItemProps = {
-  review: Review
+  review: Review;
 }
 
 function ReviewItem({review}: ReviewItemProps) {
@@ -12,7 +12,8 @@ function ReviewItem({review}: ReviewItemProps) {
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54"
-               alt="Reviews avatar"/>
+            alt="Reviews avatar"
+          />
         </div>
         <span className="reviews__user-name">
           {review.author}

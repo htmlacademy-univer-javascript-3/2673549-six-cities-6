@@ -6,7 +6,7 @@ import {Offer} from 'types/offerTypes/Offer';
 import {Review} from 'types/offerTypes/Review.ts';
 import {AppRoute, MaxRating} from '@constants';
 import GetPercentage from 'lib/GetPercentage.ts';
-import ReviewItem from "../components/Review/ReviewItem.tsx";
+import ReviewItem from '../components/Review/ReviewItem.tsx';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -15,13 +15,13 @@ type OfferPageProps = {
 
 function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
   const {offerId} = useParams<{ offerId: string }>();
-  const offer = offers.filter(offer => offer.id === offerId).pop();
+  const foundOffer = offers.filter((offer) => offer.id === offerId).pop();
 
-  if (!offer) {
+  if (!foundOffer) {
     return NotFoundPage();
   }
 
-  const offerReviews = reviews.filter(review => review.offerId == offer.id);
+  const offerReviews = reviews.filter((review) => review.offerId === foundOffer.id);
 
   return (
     <Page>
@@ -81,14 +81,14 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
             </div>
             <div className="offer__container container">
               <div className="offer__wrapper">
-                {offer.isPremium && (
+                {foundOffer.isPremium && (
                   <div className="offer__mark">
                     <span>Premium</span>
                   </div>
                 )}
                 <div className="offer__name-wrapper">
                   <h1 className="offer__name">
-                    {offer.title}
+                    {foundOffer.title}
                   </h1>
                   <button className="offer__bookmark-button button" type="button">
                     <svg className="offer__bookmark-icon" width="31" height="33">
@@ -99,20 +99,23 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
-                    <span style={{width: `${offer.rating}%`}}></span>
+                    <span style={{width: `${foundOffer.rating}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="offer__rating-value rating__value">{GetPercentage(offer.rating, MaxRating)}</span>
+                  <span
+                    className="offer__rating-value rating__value"
+                  >{GetPercentage(foundOffer.rating, MaxRating)}
+                  </span>
                 </div>
                 <ul className="offer__features">
                   <li className="offer__feature offer__feature--entire">
-                    {offer.features.houseType}
+                    {foundOffer.features.houseType}
                   </li>
                   <li className="offer__feature offer__feature--bedrooms">
-                    {offer.features.bedroomsCount} Bedrooms
+                    {foundOffer.features.bedroomsCount} Bedrooms
                   </li>
                   <li className="offer__feature offer__feature--adults">
-                    Max {offer.features.maxAdultsCount} adults
+                    Max {foundOffer.features.maxAdultsCount} adults
                   </li>
                 </ul>
                 <div className="offer__price">
@@ -123,8 +126,8 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                   <h2 className="offer__inside-title">What&apos;s inside</h2>
                   <ul className="offer__inside-list">
                     {
-                      offer.insideList.map((inside) => (
-                        <li className="offer__inside-item">
+                      foundOffer.insideList.map((inside) => (
+                        <li key={inside} className="offer__inside-item">
                           {inside}
                         </li>
                       ))
@@ -136,7 +139,8 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                   <div className="offer__host-user user">
                     <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
                       <img className="offer__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74"
-                           alt="Host avatar"/>
+                        alt="Host avatar"
+                      />
                     </div>
                     <span className="offer__user-name">
                         Angelina
@@ -157,12 +161,16 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                   </div>
                 </div>
                 <section className="offer__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span
-                    className="reviews__amount">{offerReviews.length}</span></h2>
+                  <h2 className="reviews__title">Reviews &middot;
+                    <span
+                      className="reviews__amount"
+                    >{offerReviews.length}
+                    </span>
+                  </h2>
                   <ul className="reviews__list">
                     {offerReviews.map((review) => (
-                        <ReviewItem review={review}/>
-                      )
+                      <ReviewItem key={review.id} review={review}/>
+                    )
                     )}
                   </ul>
                   <ReviewForm/>
@@ -188,7 +196,8 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                         <span className="place-card__price-text">&#47;&nbsp;night</span>
                       </div>
                       <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                              type="button">
+                        type="button"
+                      >
                         <svg className="place-card__bookmark-icon" width="18" height="19">
                           <use xlinkHref="#icon-bookmark"></use>
                         </svg>
@@ -212,7 +221,8 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#">
                       <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200"
-                           alt="Place image"/>
+                        alt="Place image"
+                      />
                     </a>
                   </div>
                   <div className="place-card__info">
@@ -248,7 +258,8 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#">
                       <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200"
-                           alt="Place image"/>
+                        alt="Place image"
+                      />
                     </a>
                   </div>
                   <div className="place-card__info">

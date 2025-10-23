@@ -2,7 +2,7 @@ import StayDuration from 'types/StayDuration';
 import OfferFeatures from './OfferFeatures';
 
 type MainOfferInformation = {
-  id: string,
+  id: string;
   isPremium: boolean;
   image: string;
   price: number;

@@ -18,7 +18,7 @@ export const offers: Offer[] = [
       maxAdultsCount: 4
     },
     city: {
-      name: "Amsterdam"
+      name: 'Amsterdam'
     },
     insideList: [
       'Wi-Fi',
@@ -48,7 +48,7 @@ export const offers: Offer[] = [
       maxAdultsCount: 2
     },
     city: {
-      name: "Amsterdam"
+      name: 'Amsterdam'
     },
     insideList: [
       'Wi-Fi',
@@ -78,7 +78,7 @@ export const offers: Offer[] = [
       maxAdultsCount: 2
     },
     city: {
-      name: "Amsterdam"
+      name: 'Amsterdam'
     },
     insideList: [
       'Wi-Fi',
@@ -108,7 +108,7 @@ export const offers: Offer[] = [
       maxAdultsCount: 2
     },
     city: {
-      name: "Amsterdam"
+      name: 'Amsterdam'
     },
     insideList: [
       'Wi-Fi',
@@ -138,7 +138,7 @@ export const offers: Offer[] = [
       maxAdultsCount: 2
     },
     city: {
-      name: "Cologne"
+      name: 'Cologne'
     },
     insideList: [
       'Wi-Fi',

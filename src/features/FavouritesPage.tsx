@@ -1,8 +1,8 @@
 import FavouriteLocationItems from 'components/FavouriteLocationItems';
 import Page from 'components/Page';
 import {Offer} from 'types/offerTypes/Offer';
-import {Link} from "react-router-dom";
-import {AppRoute} from "@constants";
+import {Link} from 'react-router-dom';
+import {AppRoute} from '@constants';
 
 type FavoritesPageProps = {
   offers: Offer[];
@@ -59,8 +59,8 @@ function FavouritesPage({offers}: FavoritesPageProps): JSX.Element {
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
                 {
-                  Object.entries(offersByCities).map(([city, offers]) => (
-                    <FavouriteLocationItems city={city} offers={offers}/>
+                  Object.entries(offersByCities).map(([city, cityOffers]) => (
+                    <FavouriteLocationItems key={city} city={city} offers={cityOffers}/>
                   ))
                 }
               </ul>
