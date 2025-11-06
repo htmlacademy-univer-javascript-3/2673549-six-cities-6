@@ -1,8 +1,8 @@
-import {Link} from 'react-router-dom';
-import Page from 'components/Page';
-import OffersList from 'components/OfferList';
-import {Offer} from 'types/offerTypes/Offer';
-import {AppRoute} from '@constants';
+import { Link } from 'react-router-dom';
+import Page from 'components/page';
+import OffersList from 'components/offer-list';
+import { Offer } from 'types/offer-types/offer';
+import { AppRoute } from '@constants';
 
 
 type MainPageProps = {
@@ -10,7 +10,7 @@ type MainPageProps = {
   offers: Offer[];
 }
 
-function MainPage({placeOffersCount, offers}: MainPageProps): JSX.Element {
+function MainPage({ placeOffersCount, offers }: MainPageProps): JSX.Element {
   return (
     <Page>
       <div className="page page--gray page--main">
@@ -19,7 +19,7 @@ function MainPage({placeOffersCount, offers}: MainPageProps): JSX.Element {
             <div className="header__wrapper">
               <div className="header__left">
                 <Link className="header__logo-link header__logo-link--active" to={AppRoute.Main}>
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
                 </Link>
               </div>
               <nav className="header__nav">
@@ -89,7 +89,7 @@ function MainPage({placeOffersCount, offers}: MainPageProps): JSX.Element {
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
-                  Popular
+                    Popular
                     <svg className="places__sorting-arrow" width="7" height="4">
                       <use xlinkHref="#icon-arrow-select"></use>
                     </svg>
@@ -101,7 +101,7 @@ function MainPage({placeOffersCount, offers}: MainPageProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-                <OffersList offers={offers}/>
+                <OffersList offers={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>

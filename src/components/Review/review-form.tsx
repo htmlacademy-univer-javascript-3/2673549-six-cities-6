@@ -1,6 +1,6 @@
-import {useState} from 'react';
-import {getRange} from 'lib/GetRange.ts';
-import RatingInput from './RatingInput.tsx';
+import { useState } from 'react';
+import { getRange } from 'lib/range-utils';
+import RatingInput from './rating-input';
 
 function ReviewForm() {
   const [_, setRating] = useState<number>(0);
@@ -11,7 +11,7 @@ function ReviewForm() {
       <div className="reviews__rating-form form__rating">
         {
           getRange(1, 5).map((rating) => (
-            <RatingInput key={rating} rating={rating} setRating={setRating}/>
+            <RatingInput key={rating} rating={rating} setRating={setRating} />
           ))
         }
       </div>

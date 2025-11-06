@@ -1,12 +1,12 @@
-import {useState} from 'react';
-import PlaceCard from './сards/PlaceCard.tsx';
-import {Offer} from 'types/offerTypes/Offer.ts';
+import { useState } from 'react';
+import { PlaceCard } from './сards/place-card';
+import { Offer } from 'types/offer-types/offer.ts';
 
 type OffersListProps = {
   offers: Offer[];
 };
 
-export default function OffersList({offers}: OffersListProps): JSX.Element {
+export default function OffersList({ offers }: OffersListProps): JSX.Element {
   const [, setActiveOfferId] = useState<string | null>(null);
 
   const handleCursorEnter = (offerId: string) => {

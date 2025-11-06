@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '@constants';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '@constants';
 
 function NotFoundPage(): JSX.Element {
   return (
@@ -16,7 +16,7 @@ function NotFoundPage(): JSX.Element {
         <title>Страница не найдена</title>
       </Helmet>
       <h1>404. Page not found</h1>
-      <br/>
+      <br />
       <Link
         className="to__main__page"
         to={AppRoute.Main}

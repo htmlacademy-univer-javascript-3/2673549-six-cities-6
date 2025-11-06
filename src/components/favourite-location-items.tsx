@@ -1,14 +1,14 @@
-import {Link} from 'react-router-dom';
-import FavouriteCard from './сards/FavouriteCard';
-import {Offer} from 'types/offerTypes/Offer';
-import {AppRoute} from '@constants';
+import { Link } from 'react-router-dom';
+import { FavouriteCard } from './сards/favourite-card';
+import { Offer } from 'types/offer-types/offer';
+import { AppRoute } from '@constants';
 
 type FavouriteLocationItemsProps = {
   city: string;
   offers: Offer[];
 }
 
-function FavouriteLocationItems({city, offers}: FavouriteLocationItemsProps) {
+export function FavouriteLocationItems({ city, offers }: FavouriteLocationItemsProps) {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -20,11 +20,9 @@ function FavouriteLocationItems({city, offers}: FavouriteLocationItemsProps) {
       </div>
       <div className="favorites__places">
         {offers.map((offer) => (
-          <FavouriteCard key={offer.id} offer={offer}/>
+          <FavouriteCard key={offer.id} offer={offer} />
         ))}
       </div>
     </li>
   );
 }
-
-export default FavouriteLocationItems;

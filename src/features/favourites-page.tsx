@@ -1,15 +1,15 @@
-import FavouriteLocationItems from 'components/FavouriteLocationItems';
-import Page from 'components/Page';
-import {Offer} from 'types/offerTypes/Offer';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '@constants';
+import { FavouriteLocationItems } from 'components/favourite-location-items';
+import Page from 'components/page';
+import { Offer } from 'types/offer-types/offer';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '@constants';
 
 type FavoritesPageProps = {
   offers: Offer[];
 };
 
-function FavouritesPage({offers}: FavoritesPageProps): JSX.Element {
-  const favouriteOffers = offers.filter((offer) => offer.isBookmarked);
+function FavouritesPage({ offers }: FavoritesPageProps): JSX.Element {
+  const favouriteOffers = offers.filter((offer) => offer.isFavourite);
   const offersByCities = favouriteOffers.reduce<Record<string, Offer[]>>((acc, offer) => {
     const cityName = offer.city.name;
 
@@ -29,7 +29,7 @@ function FavouritesPage({offers}: FavoritesPageProps): JSX.Element {
             <div className="header__wrapper">
               <div className="header__left">
                 <Link className="header__logo-link" to={AppRoute.Main}>
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
                 </Link>
               </div>
               <nav className="header__nav">
@@ -60,7 +60,7 @@ function FavouritesPage({offers}: FavoritesPageProps): JSX.Element {
               <ul className="favorites__list">
                 {
                   Object.entries(offersByCities).map(([city, cityOffers]) => (
-                    <FavouriteLocationItems key={city} city={city} offers={cityOffers}/>
+                    <FavouriteLocationItems key={city} city={city} offers={cityOffers} />
                   ))
                 }
               </ul>
@@ -69,7 +69,7 @@ function FavouritesPage({offers}: FavoritesPageProps): JSX.Element {
         </main>
         <footer className="footer container">
           <Link className="footer__logo-link" to={AppRoute.Main}>
-            <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
+            <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
           </Link>
         </footer>
       </div>
