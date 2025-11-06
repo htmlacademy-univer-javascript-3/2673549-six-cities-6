@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import Page from 'components/page';
+import Page from 'components/base/page';
 import ReviewForm from 'components/review/review-form';
 import NotFoundPage from './not-found-page';
 import { Offer } from 'types/offer-types/offer';
