@@ -3,7 +3,7 @@ import Map from 'components/base/map';
 import { Offer } from 'types/offer-types/offer';
 import { Review } from 'types/offer-types/review';
 import { getPercentage } from 'lib/number-utils';
-import { MaxRating } from '@constants';
+import { MAX_RATING } from '@constants';
 
 type OfferSectionProps = {
   offer: Offer;
@@ -45,7 +45,7 @@ function OfferSection({ offer, reviews, nearestOffers }: OfferSectionProps) {
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
-              <span style={{ width: `${getPercentage(offer.rating, MaxRating)}%` }}></span>
+              <span style={{ width: `${getPercentage(offer.rating, MAX_RATING)}%` }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span

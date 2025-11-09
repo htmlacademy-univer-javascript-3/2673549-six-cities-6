@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import RatingInput from './rating-input';
-import { MaxCommentSize } from '@constants';
+import { MAX_COMMENT_SIZE } from '@constants';
 
 const ratingMap = {
   5: 'perfect',
@@ -23,7 +23,7 @@ function ReviewForm() {
   }
 
   function CanSubmitReview() {
-    return review.length > 0 && review.length < MaxCommentSize;
+    return review.length > 0 && review.length < MAX_COMMENT_SIZE;
   }
 
   return (

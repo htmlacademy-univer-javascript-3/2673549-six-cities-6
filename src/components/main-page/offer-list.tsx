@@ -21,6 +21,9 @@ export default function OffersList({ offers, onOfferHover }: OffersListProps): J
         <PlaceCard
           key={offer.id}
           offer={offer}
+          blockName='cities'
+          imageWidth={260}
+          imageHeight={200}
           onMouseEnter={() => handleCursorEnter(offer.id)}
           onMouseLeave={handleCursorLeave}
         />))}

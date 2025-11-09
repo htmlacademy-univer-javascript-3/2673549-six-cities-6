@@ -1,4 +1,4 @@
-import { FavouriteLocationItems } from 'components/favourite-location-items';
+import { FavouriteLocationItems } from 'components/favourites-page/favourite-location-items';
 import Page from 'components/base/page';
 import { Offer } from 'types/offer-types/offer';
 import { Link } from 'react-router-dom';
