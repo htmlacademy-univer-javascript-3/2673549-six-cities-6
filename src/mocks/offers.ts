@@ -24,7 +24,7 @@ export const offers: Offer[] = [
     isFavourite: false,
     isPremium: true,
     rating: 4.8,
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.',
     bedrooms: 4,
     maxAdults: 2,
     goods: [

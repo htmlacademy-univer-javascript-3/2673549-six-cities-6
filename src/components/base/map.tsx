@@ -7,6 +7,7 @@ import { City } from 'types/offer-types/сity';
 import useMap from 'hooks/useMap';
 
 type MapProps = {
+  className: string;
   city: City;
   offers: Offer[];
   selectedOffer: Offer | undefined;
@@ -24,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ city, offers, selectedOffer }: MapProps) {
+function Map({ className, city, offers, selectedOffer }: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -55,7 +56,7 @@ function Map({ city, offers, selectedOffer }: MapProps) {
 
   return (
     <section
-      className="cities__map map"
+      className={className}
       ref={mapRef}
     />
   );

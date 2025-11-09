@@ -1,6 +1,6 @@
 import { Review } from 'types/offer-types/review';
 import { getMonthWithYear } from 'lib/date-utils';
-import getPercentage from 'lib/number-utils';
+import { getPercentage } from 'lib/number-utils';
 import { MaxRating } from '@constants';
 
 type ReviewItemProps = {
