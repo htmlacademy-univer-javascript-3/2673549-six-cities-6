@@ -1,6 +1,15 @@
-import Page from 'components/Page';
+import { Link } from 'react-router-dom';
+import Page from 'components/base/page';
+import { Offer } from 'types/offer-types/offer';
+import { AppRoute } from '@constants';
+import { Cities } from 'components/main-page/cities';
 
-function MainEmptyPage(): JSX.Element {
+
+type MainPageProps = {
+  offers: Offer[];
+}
+
+function MainPage({ offers }: MainPageProps): JSX.Element {
   return (
     <Page>
       <div className="page page--gray page--main">
@@ -8,19 +17,19 @@ function MainEmptyPage(): JSX.Element {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link header__logo-link--active">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-                </a>
+                <Link className="header__logo-link header__logo-link--active" to={AppRoute.Main}>
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+                </Link>
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
+                    <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favourites}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
                       <span className="header__favorite-count">3</span>
-                    </a>
+                    </Link>
                   </li>
                   <li className="header__nav-item">
                     <a className="header__nav-link" href="#">
@@ -33,7 +42,7 @@ function MainEmptyPage(): JSX.Element {
           </div>
         </header>
 
-        <main className="page__main page__main--index page__main--index-empty">
+        <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
@@ -54,7 +63,7 @@ function MainEmptyPage(): JSX.Element {
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a className="locations__item-link tabs__item">
+                  <a className="locations__item-link tabs__item tabs__item--active">
                     <span>Amsterdam</span>
                   </a>
                 </li>
@@ -64,30 +73,18 @@ function MainEmptyPage(): JSX.Element {
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a className="locations__item-link tabs__item tabs__item--active" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Dusseldorf</span>
                   </a>
                 </li>
               </ul>
             </section>
           </div>
-          <div className="cities">
-            <div className="cities__places-container cities__places-container--empty container">
-              <section className="cities__no-places">
-                <div className="cities__status-wrapper tabs__content">
-                  <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in
-                    Dusseldorf
-                  </p>
-                </div>
-              </section>
-              <div className="cities__right-section"></div>
-            </div>
-          </div>
+          <Cities offers={offers} />
         </main>
       </div>
     </Page>
   );
 }
 
-export default MainEmptyPage;
+export default MainPage;

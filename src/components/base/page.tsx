@@ -1,7 +1,7 @@
-import {useLocation} from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
-import {Helmet} from 'react-helmet-async';
-import {AppRoute, PAGE_CONFIG} from '@constants';
+import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { AppRoute, PAGE_CONFIG } from '@constants';
 
 type PageProps = {
   children: JSX.Element;
@@ -26,7 +26,7 @@ function getPageTitle(pathname: string): string {
   return PAGE_CONFIG.DEFAULT_TITLE;
 }
 
-function Page({children}: PageProps) {
+function Page({ children }: PageProps) {
   const location = useLocation();
   const [title, setTitle] = useState(PAGE_CONFIG.DEFAULT_TITLE);
   useEffect(() => {
