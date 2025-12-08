@@ -13,6 +13,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["components/*"],
+      "features": ["features/*"],
+      "lib/*": ["lib/*"],
+      "hooks/*": ["hooks/*"],
+      "types/*": ["types/*"],
+      "mocks/*": ["mocks/*"],
+      "store/*": ["store/*"],
+      "@constants": ["constants.ts"],
+    },
 
     /* Linting */
     "strict": true,
