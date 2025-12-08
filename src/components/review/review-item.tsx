@@ -1,7 +1,7 @@
 import { Review } from 'types/offer-types/review';
 import { getMonthWithYear } from 'lib/date-utils';
-import getPercentage from 'lib/number-utils';
-import { MaxRating } from '@constants';
+import { getPercentage } from 'lib/number-utils';
+import { MAX_RATING } from '@constants';
 
 type ReviewItemProps = {
   review: Review;
@@ -24,7 +24,7 @@ function ReviewItem({ review }: ReviewItemProps) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${getPercentage(review.rating, MaxRating)}%` }}></span>
+            <span style={{ width: `${getPercentage(review.rating, MAX_RATING)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

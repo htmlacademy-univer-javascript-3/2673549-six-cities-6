@@ -36,7 +36,12 @@ export function Cities({ offers }: CityProps): JSX.Element {
           <OffersList offers={offers} onOfferHover={setActiveOfferId} />
         </section>
         <div className="cities__right-section">
-          <Map city={activeOffer?.city || offers[0].city} offers={offers} selectedOffer={activeOffer}/>
+          <Map
+            className='offer__map map'
+            city={activeOffer?.city || offers[0].city}
+            offers={offers}
+            selectedOffer={activeOffer}
+          />
         </div>
       </div>
     </div>

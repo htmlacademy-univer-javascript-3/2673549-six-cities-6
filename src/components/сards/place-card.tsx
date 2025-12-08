@@ -1,29 +1,55 @@
 import { Link } from 'react-router-dom';
-import { CardPremiumPart } from './card-premium-part';
 import { CardFavouritePart } from './card-favourite-part';
-import { CardRatingPart } from './card-rating-part';
-import { AppRoute } from '@constants';
+import { AppRoute, MAX_RATING, PlaceCardFeature } from '@constants';
 import { OfferPreview } from 'types/offer-types/offer-preview';
+import { getPercentage } from 'lib/number-utils';
+
+function getPlaceCardInfoClassName(feature?: PlaceCardFeature): string {
+  switch (feature) {
+    case PlaceCardFeature.FavouritesCard:
+      return 'favorites__card-info place-card__info';
+    default:
+      return 'place-card__info';
+  }
+}
 
 type PlaceCardProps = {
   offer: OfferPreview;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  blockName: string;
+  feature?: PlaceCardFeature;
+  imageWidth?: number;
+  imageHeight?: number;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+export function PlaceCard({
+  offer,
+  blockName,
+  feature,
+  imageWidth,
+  imageHeight,
+  onMouseEnter,
+  onMouseLeave }: PlaceCardProps
+): JSX.Element {
   return (
-    <article className="cities__card place-card"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+    <article className={`${blockName}__card place-card`}
+      {...(onMouseEnter && { onMouseEnter: onMouseEnter })}
+      {...(onMouseLeave && { onMouseLeave: onMouseLeave })}
     >
-      <CardPremiumPart isPremium={offer.isPremium} />
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      {
+        offer.isPremium && (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>
+        )
+      }
+      <div className={`${blockName}__image-wrapper place-card__image-wrapper`}>
         <Link to={`${AppRoute.Offer}/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={imageWidth} height={imageHeight} alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={getPlaceCardInfoClassName(feature)}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
@@ -31,12 +57,17 @@ export function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps)
           </div>
           <CardFavouritePart isFavourite={offer.isFavourite} />
         </div>
-        <CardRatingPart rating={offer.rating} />
+        <div className="place-card__rating rating">
+          <div className="place-card__stars rating__stars">
+            <span style={{ width: `${getPercentage(offer.rating, MAX_RATING)}%` }}></span>
+            <span className="visually-hidden">Rating</span>
+          </div>
+        </div>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
-    </article>
+    </ article>
   );
 }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { FavouriteCard } from './сards/favourite-card';
 import { Offer } from 'types/offer-types/offer';
-import { AppRoute } from '@constants';
+import { AppRoute, PlaceCardFeature } from '@constants';
+import { PlaceCard } from 'components/сards/place-card';
 
 type FavouriteLocationItemsProps = {
   city: string;
@@ -20,7 +20,14 @@ export function FavouriteLocationItems({ city, offers }: FavouriteLocationItemsP
       </div>
       <div className="favorites__places">
         {offers.map((offer) => (
-          <FavouriteCard key={offer.id} offer={offer} />
+          <PlaceCard
+            key={offer.id}
+            offer={offer}
+            blockName='favorites'
+            feature={PlaceCardFeature.FavouritesCard}
+            imageWidth={150}
+            imageHeight={110}
+          />
         ))}
       </div>
     </li>
