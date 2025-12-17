@@ -3,16 +3,16 @@ import Page from 'components/base/page';
 import OfferSection from 'components/offer-page/offer-section';
 import NearPlacesList from 'components/offer-page/near-places-list';
 import NotFoundPage from './not-found-page';
-import { Offer } from 'types/offer-types/offer';
 import { Review } from 'types/offer-types/review';
 import { AppRoute, MAX_NEAR_PLACE_COUNT } from '@constants';
+import { useOffers } from 'hooks/store-hooks/offer-hooks';
 
 type OfferPageProps = {
-  offers: Offer[];
   reviews: Review[];
 }
 
-function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
+function OfferPage({ reviews }: OfferPageProps): JSX.Element {
+  const offers = useOffers();
   const { offerId } = useParams<{ offerId: string }>();
   const foundOffer = offers.filter((offer) => offer.id === offerId).pop();
 

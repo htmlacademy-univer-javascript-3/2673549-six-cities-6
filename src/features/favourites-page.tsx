@@ -3,10 +3,7 @@ import Page from 'components/base/page';
 import { Offer } from 'types/offer-types/offer';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '@constants';
-
-type FavoritesPageProps = {
-  offers: Offer[];
-};
+import { useOffers } from 'hooks/store-hooks/offer-hooks';
 
 function getFavouritesByCity(offers: Offer[]) {
   return offers.reduce<Record<string, Offer[]>>((acc, offer) => {
@@ -21,7 +18,8 @@ function getFavouritesByCity(offers: Offer[]) {
   }, {});
 }
 
-function FavouritesPage({ offers }: FavoritesPageProps): JSX.Element {
+function FavouritesPage(): JSX.Element {
+  const offers = useOffers();
   const favouriteOffers = offers.filter((offer) => offer.isFavourite);
   const offersByCities = getFavouritesByCity(favouriteOffers);
 

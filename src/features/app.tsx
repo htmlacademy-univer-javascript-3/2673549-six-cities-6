@@ -7,22 +7,30 @@ import LoginPage from './login-page';
 import FavouritesPage from './favourites-page';
 import OfferPage from './offer-page';
 import NotFoundPage from './not-found-page';
-import { Offer } from 'types/offer-types/offer';
+import LoadingScreen from './loading-screen';
 import { Review } from 'types/offer-types/review';
+import { useAppSelector } from 'hooks';
 
 type AppProps = {
-  offers: Offer[];
   reviews: Review[];
 }
 
-function App({offers, reviews }: AppProps): JSX.Element {
+function App({ reviews }: AppProps): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage/>}
+            element={<MainPage />}
           />
           <Route
             path={AppRoute.Login}
@@ -42,13 +50,13 @@ function App({offers, reviews }: AppProps): JSX.Element {
                 restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
-                <FavouritesPage offers={offers} />
+                <FavouritesPage/>
               </PrivateRoute>
             }
           />
           <Route
             path={`${AppRoute.Offer}/:offerId`}
-            element={<OfferPage offers={offers} reviews={reviews} />}
+            element={<OfferPage reviews={reviews} />}
           />
           <Route
             path="*"

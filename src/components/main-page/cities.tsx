@@ -1,19 +1,15 @@
-import { Offer } from 'types/offer-types/offer';
+import { useState } from 'react';
 import Map from 'components/base/map';
 import OffersList from 'components/main-page/offer-list';
 import { SortDropDown } from 'components/main-page/sort-drop-down';
-import { useState } from 'react';
+import { useCity, useOffers } from 'hooks/store-hooks/offer-hooks';
 import { OfferPreview } from 'types/offer-types/offer-preview';
-import { City } from 'types/offer-types/сity';
 import { SortDirection } from 'types/sort-direction';
 import { getSorted } from 'lib/sort-utils';
 
-type CityProps = {
-  activeCity: City;
-  offers: Offer[];
-}
-
-export function Cities({ activeCity, offers }: CityProps): JSX.Element {
+export function Cities(): JSX.Element {
+  const activeCity = useCity();
+  const offers = useOffers();
   const [activeOfferId, setActiveOfferId] = useState<OfferPreview['id'] | null>(null);
   const [activeSortDirection, setActiveSortDirection] = useState<SortDirection>('Popular');
   const activeOffer = offers.find((offer) => offer.id === activeOfferId);

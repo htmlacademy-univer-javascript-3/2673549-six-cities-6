@@ -1,11 +1,13 @@
 import { CityNames } from '@constants';
+import { useCity } from 'hooks/store-hooks/offer-hooks';
 
 type LocationListProps = {
-  activeCity: CityNames;
   onCityChange: (city: CityNames) => void;
 }
 
-export function LocationList({ activeCity, onCityChange }: LocationListProps) {
+export function LocationList({onCityChange }: LocationListProps) {
+  const activeCity = useCity();
+
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
@@ -13,7 +15,7 @@ export function LocationList({ activeCity, onCityChange }: LocationListProps) {
           Object.values(CityNames).map((city) => (
             <li className="locations__item" key={city}>
               <a
-                className={`locations__item-link tabs__item ${activeCity === city && 'tabs__item--active'}`}
+                className={`locations__item-link tabs__item ${activeCity.name === city && 'tabs__item--active'}`}
                 onClick={() => onCityChange(city)}
               >
                 <span>{city}</span>
