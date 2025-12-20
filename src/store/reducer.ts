@@ -1,20 +1,25 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setCity, setError, loadOffers, setOffersDataLoadingStatus } from 'store/action';
+import { setCity, setError, loadOffers, setOffersDataLoadingStatus, requireAuthorization, setUserData } from 'store/action';
 import { Offer } from 'types/offer-types/offer';
 import { City } from 'types/offer-types/сity';
-import { CITIES, CityNames } from '@constants';
+import { UserData } from 'types/auth-types/user-data';
+import { AuthorizationStatus, DefaultCity } from '@constants';
 
 interface State {
   city: City;
   offers: Offer[];
   isOffersDataLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
+  userData: UserData | null;
   error: string | null;
 }
 
 const initialState: State = {
-  city: CITIES.find((city) => city.name === CityNames.Paris)!,
+  city: DefaultCity,
   offers: [],
   isOffersDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userData: null,
   error: null,
 };
 
@@ -28,6 +33,16 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+
+      if (action.payload === AuthorizationStatus.NoAuth) {
+        state.userData = null;
+      }
+    })
+    .addCase(setUserData, (state, action) => {
+      state.userData = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;

@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '@constants';
 import PrivateRoute from 'components/base/private-route';
 import MainPage from './main-page';
 import LoginPage from './login-page';
@@ -10,15 +9,17 @@ import NotFoundPage from './not-found-page';
 import LoadingScreen from './loading-screen';
 import { Review } from 'types/offer-types/review';
 import { useAppSelector } from 'hooks';
+import { AppRoute, AuthorizationStatus } from '@constants';
 
 type AppProps = {
   reviews: Review[];
 }
 
 function App({ reviews }: AppProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
 
-  if (isOffersDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (
       <LoadingScreen />
     );
