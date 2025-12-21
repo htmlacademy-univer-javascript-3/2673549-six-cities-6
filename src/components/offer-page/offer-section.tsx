@@ -110,7 +110,7 @@ function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
       <Map
         className='offer__map map'
         city={offer.city}
-        offers={nearbyOffers}
+        offers={nearbyOffers.concat(offer)}
         selectedOffer={offer}
       />
     </section>
