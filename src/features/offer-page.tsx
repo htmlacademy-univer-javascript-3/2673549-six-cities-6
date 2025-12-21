@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import LoadingScreen from 'features/loading-screen';
+import NotFoundPage from 'features/not-found-page';
 import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import OfferSection from 'components/offer-page/offer-section';
@@ -9,26 +10,37 @@ import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { OfferId } from 'types/offer-types/offer';
 import { fetchNearbyOffersAction, fetchOfferAction } from 'store/api-actions';
 import { MAX_NEARBY_OFFERS_COUNT } from '@constants';
+import { loadNearbyOffers, loadOfferReviews, selectOffer } from 'store/action';
 
 function OfferPage(): JSX.Element {
   const { offerId } = useParams<{ offerId: OfferId }>();
   const dispatch = useAppDispatch();
 
   const offer = useAppSelector((state) => state.selectedOffer);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers.slice(0, MAX_NEARBY_OFFERS_COUNT));
+  const nearbyOffers = useAppSelector((state) => state.nearbyOffers).slice(0, MAX_NEARBY_OFFERS_COUNT);
 
   const isOffersDataLoading = useAppSelector((status) => status.isOffersDataLoading);
   const isNearbyOffersDataLoading = useAppSelector((status) => status.isNearbyOffersDataLoading);
 
   useEffect(() => {
-    if (offerId && offerId !== offer?.id) {
+    if (offerId && offer?.id !== offerId) {
       dispatch(fetchOfferAction(offerId));
       dispatch(fetchNearbyOffersAction(offerId));
+
+      return () => {
+        dispatch(selectOffer(null));
+        dispatch(loadNearbyOffers([]));
+        dispatch(loadOfferReviews([]));
+      };
     }
   }, [dispatch, offerId, offer?.id]);
 
-  if (!offer || isOffersDataLoading || isNearbyOffersDataLoading) {
+  if (isOffersDataLoading || isNearbyOffersDataLoading) {
     return <LoadingScreen />;
+  }
+
+  if (!offer) {
+    return <NotFoundPage />;
   }
 
   return (

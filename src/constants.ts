@@ -13,7 +13,8 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favourites = '/favourites',
-  Offer = '/offer'
+  Offer = '/offer',
+  NotFound = '/not-found',
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

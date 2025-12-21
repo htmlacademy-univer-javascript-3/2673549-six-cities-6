@@ -10,6 +10,7 @@ import {
   loadNearbyOffers,
   loadOfferReviews,
   loadOffers,
+  redirectToRoute,
   requireAuthorization,
   selectOffer,
   setError,
@@ -22,7 +23,8 @@ import {
 import { store } from './';
 import { dropToken, saveToken } from 'services/token';
 import ApiRouteBuilder from 'services/api-route-builder';
-import { AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '@constants';
+import { AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '@constants';
+import { redirect } from 'react-router-dom';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -46,9 +48,14 @@ export const fetchOfferAction = createAsyncThunk<void, OfferId, {
   'data/fetchDetailedOffer',
   async (offerId, { dispatch, extra: api }) => {
     dispatch(setOffersDataLoadingStatus(true));
-    const { data } = await api.get<DetailedOffer>(ApiRouteBuilder.Offer(offerId));
-    dispatch(setOffersDataLoadingStatus(false));
-    dispatch(selectOffer(data));
+    try {
+      const { data } = await api.get<DetailedOffer>(ApiRouteBuilder.Offer(offerId));
+      dispatch(selectOffer(data));
+    } catch {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+    } finally {
+      dispatch(setOffersDataLoadingStatus(false));
+    }
   },
 );
 
