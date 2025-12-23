@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import { useAppDispatch } from 'hooks/index';
-import { setCity } from 'store/action';
-import { AppRoute, CITIES, DefaultCity } from '@constants';
+import { setCity } from 'store/offers-data/offers-data';
 import { loginAction } from 'store/api-actions';
 import { getRandomElement } from 'lib/array-utils';
+import { AppRoute, CITIES, DefaultCity } from '@constants';
 
 function isPasswordValid(password: string) {
   const hasLetter = /[a-zA-Z]/.test(password);
@@ -21,7 +21,7 @@ function LoginPage(): JSX.Element {
   const randomCity = getRandomElement(CITIES) ?? DefaultCity;
 
   const handleMainPageRedirect = () => {
-    dispatch(setCity({ city: randomCity }));
+    dispatch(setCity(randomCity));
   };
 
   const handleSubmit = ((evt: FormEvent<HTMLFormElement>) => {

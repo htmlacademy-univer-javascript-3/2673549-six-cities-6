@@ -1,12 +1,13 @@
 import { CityNames } from '@constants';
-import { useCity } from 'hooks/store-hooks/offer-hooks';
+import { useAppSelector } from 'hooks/index';
+import { getSelectedCity } from 'store/offers-data/selectors';
 
 type LocationListProps = {
   onCityChange: (city: CityNames) => void;
 }
 
 export function LocationList({onCityChange }: LocationListProps) {
-  const activeCity = useCity();
+  const activeCity = useAppSelector(getSelectedCity);
 
   return (
     <section className="locations container">

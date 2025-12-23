@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '@constants';
 import { Offer } from 'types/offer-types/offer';
-import { City } from 'types/offer-types/сity';
+import { City } from 'types/city';
 import { Offers } from 'types/offer-types/offer';
 import useMap from 'hooks/useMap';
 

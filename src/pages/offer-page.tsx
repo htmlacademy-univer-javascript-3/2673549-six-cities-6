@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import LoadingScreen from 'features/loading-screen';
-import NotFoundPage from 'features/not-found-page';
+import LoadingScreen from 'pages/loading-screen';
+import NotFoundPage from 'pages/not-found-page';
 import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import OfferSection from 'components/offer-page/offer-section';
@@ -9,18 +9,24 @@ import NearbyPlacesList from 'components/offer-page/nearby-places-list';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { OfferId } from 'types/offer-types/offer';
 import { fetchNearbyOffersAction, fetchOfferAction } from 'store/api-actions';
+import { clearOfferData } from 'store/selected-offer-data/selected-offer-data';
+import {
+  getNearbyOffers,
+  getNearbyOffersLoadingStatus,
+  getOfferDataLoadingStatus,
+  getSelectedOffer
+} from 'store/selected-offer-data/selectors';
 import { MAX_NEARBY_OFFERS_COUNT } from '@constants';
-import { loadNearbyOffers, loadOfferReviews, selectOffer } from 'store/action';
 
 function OfferPage(): JSX.Element {
   const { offerId } = useParams<{ offerId: OfferId }>();
   const dispatch = useAppDispatch();
 
-  const offer = useAppSelector((state) => state.selectedOffer);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers).slice(0, MAX_NEARBY_OFFERS_COUNT);
+  const offer = useAppSelector(getSelectedOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers).slice(0, MAX_NEARBY_OFFERS_COUNT);
 
-  const isOffersDataLoading = useAppSelector((status) => status.isOffersDataLoading);
-  const isNearbyOffersDataLoading = useAppSelector((status) => status.isNearbyOffersDataLoading);
+  const isOffersDataLoading = useAppSelector(getOfferDataLoadingStatus);
+  const isNearbyOffersDataLoading = useAppSelector(getNearbyOffersLoadingStatus);
 
   useEffect(() => {
     if (offerId && offer?.id !== offerId) {
@@ -28,9 +34,7 @@ function OfferPage(): JSX.Element {
       dispatch(fetchNearbyOffersAction(offerId));
 
       return () => {
-        dispatch(selectOffer(null));
-        dispatch(loadNearbyOffers([]));
-        dispatch(loadOfferReviews([]));
+        dispatch(clearOfferData());
       };
     }
   }, [dispatch, offerId, offer?.id]);
