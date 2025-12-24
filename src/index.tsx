@@ -1,8 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import App from 'pages/app';
-import { Provider } from 'react-redux';
-import { store } from './store';
+import ErrorMessage from 'components/base/error-message/error-message';
+import { store } from 'store';
 import {
   checkAuthAction,
   fetchFavoriteOffersAction,
@@ -20,6 +21,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorMessage />
       <App />
     </Provider>
   </React.StrictMode>

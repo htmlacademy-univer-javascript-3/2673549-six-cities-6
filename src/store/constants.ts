@@ -3,4 +3,5 @@ export enum NameSpace {
   Offers = 'OFFERS',
   SelectedOffer = 'SELECTED_OFFER',
   FavoriteOffers = 'FAVORITE_OFFERS',
+  Service = 'SERVICE',
 }

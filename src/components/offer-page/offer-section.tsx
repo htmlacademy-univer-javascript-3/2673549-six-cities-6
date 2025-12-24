@@ -3,7 +3,7 @@ import Map from 'components/base/map';
 import { DetailedOffer } from 'types/offer-types/detailed-offer';
 import { Offers } from 'types/offer-types/offer';
 import { getPercentage } from 'lib/number-utils';
-import { capitalize } from 'lib/string-utils';
+import { capitalize, getCorrectWordForm } from 'lib/string-utils';
 import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
 import { MAX_RATING } from '@constants';
 import { BookmarkButton } from 'components/cards/bookmark-button';
@@ -50,7 +50,7 @@ function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
-              <span style={{ width: `${getPercentage(offer.rating, MAX_RATING)}%` }}></span>
+              <span style={{ width: `${getPercentage(Math.round(offer.rating), MAX_RATING)}%` }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span
@@ -63,10 +63,10 @@ function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
               {capitalize(offer.type)}
             </li>
             <li className="offer__feature offer__feature--bedrooms">
-              {offer.bedrooms} Bedrooms
+              {offer.bedrooms} {getCorrectWordForm(offer.bedrooms, 'Bedroom', 'Bedrooms')}
             </li>
             <li className="offer__feature offer__feature--adults">
-              Max {offer.maxAdults} adults
+              Max {offer.maxAdults} {getCorrectWordForm(offer.maxAdults, 'adult', 'adults')}
             </li>
           </ul>
           <div className="offer__price">

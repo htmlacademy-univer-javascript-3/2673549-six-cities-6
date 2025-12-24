@@ -7,9 +7,10 @@ import { DetailedOffer } from 'types/offer-types/detailed-offer';
 import { AuthData } from 'types/auth-types/auth-data';
 import { UserData } from 'types/auth-types/user-data';
 import { redirectToRoute } from 'store/middlewares/action';
+import { setError } from 'store/service-data/service-data';
 import { dropToken, saveToken } from 'services/token';
 import ApiRouteBuilder from 'services/api-route-builder';
-import { AppRoute } from '@constants';
+import { AppRoute, TIMEOUT_SHOW_ERROR } from '@constants';
 
 export const fetchOffersAction = createAsyncThunk<Offers, undefined, {
   dispatch: AppDispatch;
@@ -148,5 +149,15 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, { extra: api }) => {
     await api.delete(ApiRouteBuilder.Logout());
     dropToken();
+  },
+);
+
+export const clearErrorAction = createAsyncThunk(
+  'game/clearError',
+  (_arg, { dispatch }) => {
+    setTimeout(
+      () => dispatch(setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
   },
 );

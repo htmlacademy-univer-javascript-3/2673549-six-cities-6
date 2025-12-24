@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import ReviewItem from 'components/review/review-item';
 import ReviewForm from 'components/review/review-form';
 import PrivateComponent from 'components/base/private-component';
+import { getSortReviewsByDateDescending } from 'lib/sort-utils';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { fetchOfferReviewsAction } from 'store/api-actions';
 import {
@@ -9,13 +10,13 @@ import {
   getReviewSendingStatus,
   getSelectedOffer
 } from 'store/selected-offer-data/selectors';
-import { AuthorizationStatus } from '@constants';
+import { AuthorizationStatus, MAX_REVIEWS_COUNT_PER_PAGE } from '@constants';
 
 function ReviewList() {
   const dispatch = useAppDispatch();
   const selectedOffer = useAppSelector(getSelectedOffer);
   const isReviewDataPosting = useAppSelector(getReviewSendingStatus);
-  const reviews = useAppSelector(getReviews);
+  const reviews = getSortReviewsByDateDescending(useAppSelector(getReviews));
 
   useEffect(() => {
     if (selectedOffer?.id) {
@@ -32,7 +33,9 @@ function ReviewList() {
       </h2>
       <ul className="reviews__list">
         {
-          reviews.map((review) => <ReviewItem key={review.id} review={review} />)
+          reviews
+            .slice(0, MAX_REVIEWS_COUNT_PER_PAGE)
+            .map((review) => <ReviewItem key={review.id} review={review} />)
         }
       </ul>
       <PrivateComponent restrictedFor={AuthorizationStatus.NoAuth} >
