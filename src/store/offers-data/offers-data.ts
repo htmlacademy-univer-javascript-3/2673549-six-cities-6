@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { City } from 'types/city';
 import { OffersData } from 'types/state';
-import { fetchOffersAction } from 'store/api-actions';
+import { fetchOffersAction, updateFavoriteOfferStatus } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
 import { DefaultCity } from '@constants';
 
@@ -21,7 +21,7 @@ export const offersData = createSlice({
     },
     setHasError: (state, action: PayloadAction<boolean>) => {
       state.hasError = action.payload;
-    },
+    }
   },
   extraReducers(builder) {
     builder
@@ -36,6 +36,15 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.rejected, (state) => {
         state.isOffersDataLoading = false;
         state.hasError = true;
+      })
+
+      .addCase(updateFavoriteOfferStatus.fulfilled, (state, action) => {
+        const updatedOffer = action.payload;
+        const updatedOfferIndex = state.offers.findIndex((offer) => offer.id === updatedOffer.id);
+
+        if (updatedOfferIndex !== -1) {
+          state.offers[updatedOfferIndex] = action.payload;
+        }
       });
   }
 });

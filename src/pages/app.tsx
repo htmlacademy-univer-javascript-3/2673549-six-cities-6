@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from 'components/base/private-route';
 import MainPage from './main-page';
 import LoginPage from './login-page';
-import FavouritesPage from './favourites-page';
+import FavoritesPage from './favorites-page';
 import OfferPage from './offer-page';
 import NotFoundPage from './not-found-page';
 import LoadingScreen from './loading-screen';
@@ -42,13 +42,13 @@ function App(): JSX.Element {
             }
           />
           <Route
-            path={AppRoute.Favourites}
+            path={AppRoute.Favorites}
             element={
               <PrivateRoute
                 restrictedFor={AuthorizationStatus.NoAuth}
                 redirectTo={AppRoute.Login}
               >
-                <FavouritesPage />
+                <FavoritesPage />
               </PrivateRoute>
             }
           />

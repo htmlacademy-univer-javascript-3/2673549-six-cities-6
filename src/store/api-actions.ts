@@ -16,7 +16,7 @@ export const fetchOffersAction = createAsyncThunk<Offers, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchOffers',
+  'data/offers/fetchOffers',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<Offers>(ApiRouteBuilder.Offers());
     return data;
@@ -28,7 +28,7 @@ export const fetchOfferAction = createAsyncThunk<DetailedOffer | null, OfferId, 
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchDetailedOffer',
+  'data/offers/fetchDetailedOffer',
   async (offerId, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<DetailedOffer>(ApiRouteBuilder.Offer(offerId));
@@ -46,7 +46,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<Offers, OfferId, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchNearbyOffers',
+  'data/nearbyOffers/fetchNearbyOffers',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<Offers>(ApiRouteBuilder.OffersNearby(offerId));
     return data;
@@ -58,7 +58,7 @@ export const fetchOfferReviewsAction = createAsyncThunk<Reviews, OfferId, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchOfferReviews',
+  'data/reviews/fetchOfferReviews',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<Reviews>(ApiRouteBuilder.Reviews(offerId));
     return data;
@@ -76,9 +76,38 @@ export const sendOfferReviewAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }>(
-    'data/sendOfferReview',
+    'data/reviews/sendOfferReview',
     async ({ offerId, rating, comment }, { extra: api }) => {
       const { data } = await api.post<Review>(ApiRouteBuilder.SendReview(offerId), { rating, comment });
+      return data;
+    },
+  );
+
+export const fetchFavoriteOffersAction = createAsyncThunk<Offers, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/favorite/fetchOffers',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<Offers>(ApiRouteBuilder.FavoriteOffers());
+    return data;
+  },
+);
+
+export const updateFavoriteOfferStatus = createAsyncThunk<
+  DetailedOffer,
+  {
+    offerId: string;
+    setIsFavorite: boolean;
+  }, {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }>(
+    'data/favorite/updateOfferStatus',
+    async ({ offerId, setIsFavorite: setIsFavorite }, { extra: api }) => {
+      const { data } = await api.post<DetailedOffer>(ApiRouteBuilder.ChangeFavoriteOfferStatus(offerId, setIsFavorite));
       return data;
     },
   );

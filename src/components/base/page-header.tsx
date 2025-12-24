@@ -35,7 +35,7 @@ function PageHeader({ hideNavigation = false }: PageHeaderProps): JSX.Element {
                 <li className="header__nav-item user">
                   <Link
                     className="header__nav-link header__nav-link--profile"
-                    to={authorized ? AppRoute.Favourites : AppRoute.Login}
+                    to={authorized ? AppRoute.Favorites : AppRoute.Login}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
 

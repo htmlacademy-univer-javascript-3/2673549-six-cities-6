@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { CardFavouritePart } from './card-favourite-part';
+import { BookmarkButton } from './bookmark-button';
 import { AppRoute, MAX_RATING, PlaceCardFeature } from '@constants';
 import { Offer } from 'types/offer-types/offer';
 import { getPercentage } from 'lib/number-utils';
 
 function getPlaceCardInfoClassName(feature?: PlaceCardFeature): string {
   switch (feature) {
-    case PlaceCardFeature.FavouritesCard:
+    case PlaceCardFeature.FavoritesCard:
       return 'favorites__card-info place-card__info';
     default:
       return 'place-card__info';
@@ -15,10 +15,11 @@ function getPlaceCardInfoClassName(feature?: PlaceCardFeature): string {
 
 type PlaceCardProps = {
   offer: Offer;
-  blockName: string;
+  blockName: 'cities' | 'near-places' | 'favorites';
   feature?: PlaceCardFeature;
   imageWidth?: number;
   imageHeight?: number;
+  onFavoriteClick: (offerId: string, setIsFavorite: boolean) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
@@ -29,8 +30,10 @@ export function PlaceCard({
   feature,
   imageWidth,
   imageHeight,
+  onFavoriteClick,
   onMouseEnter,
-  onMouseLeave }: PlaceCardProps
+  onMouseLeave,
+}: PlaceCardProps
 ): JSX.Element {
   return (
     <article className={`${blockName}__card place-card`}
@@ -55,7 +58,13 @@ export function PlaceCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <CardFavouritePart isFavourite={offer.isFavourite} />
+          <BookmarkButton
+            blockName='place-card'
+            isActive={offer.isFavorite}
+            width={18}
+            height={19}
+            onClick={() => onFavoriteClick(offer.id, !offer.isFavorite)}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

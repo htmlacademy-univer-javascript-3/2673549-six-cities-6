@@ -1,10 +1,12 @@
 import ReviewList from 'components/review/review-list';
 import Map from 'components/base/map';
 import { DetailedOffer } from 'types/offer-types/detailed-offer';
+import { Offers } from 'types/offer-types/offer';
 import { getPercentage } from 'lib/number-utils';
 import { capitalize } from 'lib/string-utils';
+import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
 import { MAX_RATING } from '@constants';
-import { Offers } from 'types/offer-types/offer';
+import { BookmarkButton } from 'components/cards/bookmark-button';
 
 type OfferSectionProps = {
   offer: DetailedOffer;
@@ -12,6 +14,8 @@ type OfferSectionProps = {
 }
 
 function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
+  const handleFavouriteUpdate = useFavoriteOfferUpdate();
+
   return (
     <section className="offer">
       <div className="offer__gallery-container container">
@@ -36,12 +40,13 @@ function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
             <h1 className="offer__name">
               {offer.title}
             </h1>
-            <button className="offer__bookmark-button button" type="button">
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <BookmarkButton
+              blockName='offer'
+              isActive={offer.isFavorite}
+              width={31}
+              height={33}
+              onClick={() => handleFavouriteUpdate(offer.id, !offer.isFavorite)}
+            />
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">

@@ -1,5 +1,6 @@
 import { PlaceCard } from 'components/cards/place-card';
 import { Offer, OfferId } from 'types/offer-types/offer';
+import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
 
 type OffersListProps = {
   offers: Offer[];
@@ -7,6 +8,8 @@ type OffersListProps = {
 };
 
 export default function OffersList({ offers, onOfferHover }: OffersListProps): JSX.Element {
+  const handleFavoriteUpdate = useFavoriteOfferUpdate();
+
   function handleCursorEnter(offerId: string) {
     onOfferHover(offerId);
   }
@@ -26,6 +29,7 @@ export default function OffersList({ offers, onOfferHover }: OffersListProps): J
           imageHeight={200}
           onMouseEnter={() => handleCursorEnter(offer.id)}
           onMouseLeave={handleCursorLeave}
+          onFavoriteClick={handleFavoriteUpdate}
         />))}
     </div>
   );

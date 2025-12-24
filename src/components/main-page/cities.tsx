@@ -5,12 +5,12 @@ import { SortDropDown } from 'components/main-page/sort-drop-down';
 import { OfferId } from 'types/offer-types/offer';
 import { SortDirection } from 'types/sort-direction';
 import { useAppSelector } from 'hooks/index';
-import { getSelectedCity, getSelectedCityOffersOffers } from 'store/offers-data/selectors';
+import { getSelectedCity, getSelectedCityOffers } from 'store/offers-data/selectors';
 import { getSorted } from 'lib/sort-utils';
 
 export function Cities(): JSX.Element {
   const activeCity = useAppSelector(getSelectedCity);
-  const offers = useAppSelector(getSelectedCityOffersOffers);
+  const offers = useAppSelector(getSelectedCityOffers);
   const [activeOfferId, setActiveOfferId] = useState<OfferId | null>(null);
   const [activeSortDirection, setActiveSortDirection] = useState<SortDirection>('Popular');
   const activeOffer = offers.find((offer) => offer.id === activeOfferId);

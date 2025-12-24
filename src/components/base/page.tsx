@@ -11,7 +11,7 @@ function getPageTitle(pathname: string): string {
   const routeTitles = new Map<string, string>([
     [AppRoute.Main, `${PAGE_CONFIG.BASE_TITLE}. Главная`],
     [AppRoute.Login, `${PAGE_CONFIG.BASE_TITLE}. Вход`],
-    [AppRoute.Favourites, `${PAGE_CONFIG.BASE_TITLE}. Избранное`]
+    [AppRoute.Favorites, `${PAGE_CONFIG.BASE_TITLE}. Избранное`]
   ]);
 
   const staticRouteTitle = routeTitles.get(pathname);

@@ -13,6 +13,13 @@ export type OffersData = {
   hasError: boolean;
 };
 
+export type FavoriteOffersData = {
+  offers: Offers;
+  isOffersDataLoading: boolean;
+  isOfferStatusUpdating: boolean;
+  hasError: boolean;
+};
+
 export type SelectedOfferData = {
   selectedOffer: DetailedOffer | null;
   nearbyOffers: Offers;

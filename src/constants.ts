@@ -12,7 +12,7 @@ export const URL_MARKER_CURRENT = '/img/pin-active.svg';
 export enum AppRoute {
   Main = '/',
   Login = '/login',
-  Favourites = '/favourites',
+  Favorites = '/favorites',
   Offer = '/offer',
   NotFound = '/not-found',
 }
@@ -39,24 +39,19 @@ export enum CityNames {
   Dusseldorf = 'Dusseldorf',
 }
 
-export const DefaultCity: City = {
-  name: CityNames.Amsterdam,
+export const DefaultCity: City =
+{
+  name: CityNames.Paris,
   location: {
-    latitude: 52.37454,
-    longitude: 4.897976,
+    latitude: 48.85661,
+    longitude: 2.351499,
     zoom: 10
   },
 };
 
+
 export const CITIES: City[] = [
-  {
-    name: CityNames.Paris,
-    location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
-      zoom: 10
-    },
-  },
+  DefaultCity,
   {
     name: CityNames.Cologne,
     location: {
@@ -73,7 +68,14 @@ export const CITIES: City[] = [
       zoom: 10
     },
   },
-  DefaultCity,
+  {
+    name: CityNames.Amsterdam,
+    location: {
+      latitude: 52.37454,
+      longitude: 4.897976,
+      zoom: 10
+    },
+  },
   {
     name: CityNames.Hamburg,
     location: {
@@ -93,7 +95,7 @@ export const CITIES: City[] = [
 ];
 
 export enum PlaceCardFeature {
-  FavouritesCard = 'FavouritesCard'
+  FavoritesCard = 'FavoritesCard'
 }
 
 export enum ERROR {
