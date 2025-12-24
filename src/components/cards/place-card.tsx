@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-import { CardFavouritePart } from './card-favourite-part';
-import { AppRoute, MAX_RATING, PlaceCardFeature } from '@constants';
 import { Offer } from 'types/offer-types/offer';
+import { BookmarkButton } from './bookmark-button';
 import { getPercentage } from 'lib/number-utils';
+import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
+import { AppRoute, MAX_RATING, PlaceCardFeature } from '@constants';
+import React from 'react';
 
 function getPlaceCardInfoClassName(feature?: PlaceCardFeature): string {
   switch (feature) {
-    case PlaceCardFeature.FavouritesCard:
+    case PlaceCardFeature.FavoritesCard:
       return 'favorites__card-info place-card__info';
     default:
       return 'place-card__info';
@@ -15,7 +17,7 @@ function getPlaceCardInfoClassName(feature?: PlaceCardFeature): string {
 
 type PlaceCardProps = {
   offer: Offer;
-  blockName: string;
+  blockName: 'cities' | 'near-places' | 'favorites';
   feature?: PlaceCardFeature;
   imageWidth?: number;
   imageHeight?: number;
@@ -30,8 +32,11 @@ export function PlaceCard({
   imageWidth,
   imageHeight,
   onMouseEnter,
-  onMouseLeave }: PlaceCardProps
+  onMouseLeave,
+}: PlaceCardProps
 ): JSX.Element {
+  const onFavoriteClick = useFavoriteOfferUpdate();
+
   return (
     <article className={`${blockName}__card place-card`}
       {...(onMouseEnter && { onMouseEnter: onMouseEnter })}
@@ -55,7 +60,13 @@ export function PlaceCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <CardFavouritePart isFavourite={offer.isFavourite} />
+          <BookmarkButton
+            blockName='place-card'
+            isActive={offer.isFavorite}
+            width={18}
+            height={19}
+            onClick={() => onFavoriteClick(offer.id, !offer.isFavorite)}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -71,3 +82,5 @@ export function PlaceCard({
     </ article>
   );
 }
+
+export default React.memo(PlaceCard);

@@ -7,7 +7,7 @@ export const getSelectedCity = (state: State): City => state[NameSpace.Offers].c
 
 export const getOffers = (state: State): Offers => state[NameSpace.Offers].offers;
 
-export const getSelectedCityOffersOffers = (state: State): Offers => {
+export const getSelectedCityOffers = (state: State): Offers => {
   const city = state[NameSpace.Offers].city;
   return state[NameSpace.Offers].offers.filter((offer) =>
     offer.city.name === city.name

@@ -1,4 +1,4 @@
-import { PlaceCard } from 'components/cards/place-card';
+import PlaceCard from 'components/cards/place-card';
 import { Offers } from 'types/offer-types/offer';
 
 type NearbyPlacesListProps = {

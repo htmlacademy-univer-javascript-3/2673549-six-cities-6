@@ -1,4 +1,5 @@
-import { PlaceCard } from 'components/cards/place-card';
+import { useCallback, useMemo } from 'react';
+import PlaceCard from 'components/cards/place-card';
 import { Offer, OfferId } from 'types/offer-types/offer';
 
 type OffersListProps = {
@@ -7,13 +8,23 @@ type OffersListProps = {
 };
 
 export default function OffersList({ offers, onOfferHover }: OffersListProps): JSX.Element {
-  function handleCursorEnter(offerId: string) {
-    onOfferHover(offerId);
-  }
+  const hoverEventHandlers = useMemo(
+    () => {
+      const map = new Map<string, () => void>();
 
-  function handleCursorLeave() {
-    onOfferHover(null);
-  }
+      for (const offer of offers) {
+        map.set(offer.id, () => onOfferHover(offer.id));
+      }
+
+      return map;
+    },
+    [offers, onOfferHover]
+  );
+
+  const handleCursorLeave = useCallback(
+    () => onOfferHover(null),
+    [onOfferHover]
+  );
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -24,7 +35,7 @@ export default function OffersList({ offers, onOfferHover }: OffersListProps): J
           blockName='cities'
           imageWidth={260}
           imageHeight={200}
-          onMouseEnter={() => handleCursorEnter(offer.id)}
+          onMouseEnter={hoverEventHandlers.get(offer.id)}
           onMouseLeave={handleCursorLeave}
         />))}
     </div>
