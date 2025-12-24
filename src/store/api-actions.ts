@@ -130,9 +130,10 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({ login: email, password }, { extra: api }) => {
+  async ({ login: email, password }, { dispatch, extra: api }) => {
     const { data } = await api.post<UserData>(ApiRouteBuilder.Login(), { email, password });
     saveToken(data.token);
+    dispatch(fetchOffersAction());
     return data;
   },
 );

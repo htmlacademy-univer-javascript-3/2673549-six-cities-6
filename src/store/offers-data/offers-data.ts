@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { City } from 'types/city';
 import { OffersData } from 'types/state';
-import { fetchOffersAction, updateFavoriteOfferStatus } from 'store/api-actions';
+import { fetchOffersAction, logoutAction, updateFavoriteOfferStatus } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
 import { DefaultCity } from '@constants';
 
@@ -45,6 +45,10 @@ export const offersData = createSlice({
         if (updatedOfferIndex !== -1) {
           state.offers[updatedOfferIndex] = action.payload;
         }
+      })
+
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.offers = state.offers.map((offer) => ({...offer, isFavorite: false}));
       });
   }
 });

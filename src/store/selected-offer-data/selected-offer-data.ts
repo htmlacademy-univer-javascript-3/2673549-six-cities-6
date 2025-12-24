@@ -8,6 +8,7 @@ import {
   fetchOfferReviewsAction,
   sendOfferReviewAction,
   updateFavoriteOfferStatus,
+  logoutAction,
 } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
 
@@ -92,6 +93,14 @@ export const selectedOfferData = createSlice({
         if (updatedOfferIndex !== -1) {
           state.nearbyOffers[updatedOfferIndex] = action.payload;
         }
+      })
+
+      .addCase(logoutAction.fulfilled, (state) => {
+        if (state.selectedOffer) {
+          state.selectedOffer.isFavorite = false;
+        }
+
+        state.nearbyOffers = state.nearbyOffers.map((offer) => ({...offer, isFavorite: false}));
       });
   }
 });

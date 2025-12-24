@@ -4,13 +4,13 @@ import { PlaceCard } from 'components/cards/place-card';
 import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
 import { AppRoute, PlaceCardFeature } from '@constants';
 
-type FavouriteLocationItemsProps = {
+type FavoriteLocationItemsProps = {
   city: string;
   offers: Offers;
 }
 
-export function FavouriteLocationItems({ city, offers }: FavouriteLocationItemsProps) {
-  const handleFavouriteUpdate = useFavoriteOfferUpdate();
+export function FavoriteLocationItems({ city, offers }: FavoriteLocationItemsProps) {
+  const handleFavoriteUpdate = useFavoriteOfferUpdate();
 
   return (
     <li className="favorites__locations-items">
@@ -30,7 +30,7 @@ export function FavouriteLocationItems({ city, offers }: FavouriteLocationItemsP
             feature={PlaceCardFeature.FavoritesCard}
             imageWidth={150}
             imageHeight={110}
-            onFavoriteClick={handleFavouriteUpdate}
+            onFavoriteClick={handleFavoriteUpdate}
           />
         ))}
       </div>

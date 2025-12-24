@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FavoriteOffersData as FavoriteOffersData } from 'types/state';
+import { FavoriteOffersData } from 'types/state';
 import { fetchFavoriteOffersAction, updateFavoriteOfferStatus } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
 
@@ -14,7 +14,7 @@ export const favoriteOffersData = createSlice({
   name: NameSpace.Offers,
   initialState,
   reducers: {
-    clearFavouriteOffers: (state) => {
+    clearFavoriteOffers: (state) => {
       state.offers = [];
     },
     setHasError: (state, action: PayloadAction<boolean>) => {
@@ -60,4 +60,4 @@ export const favoriteOffersData = createSlice({
   }
 });
 
-export const { clearFavouriteOffers, setHasError } = favoriteOffersData.actions;
+export const { clearFavoriteOffers, setHasError } = favoriteOffersData.actions;

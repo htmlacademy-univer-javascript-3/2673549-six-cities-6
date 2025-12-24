@@ -14,7 +14,7 @@ type OfferSectionProps = {
 }
 
 function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
-  const handleFavouriteUpdate = useFavoriteOfferUpdate();
+  const handleFavoriteUpdate = useFavoriteOfferUpdate();
 
   return (
     <section className="offer">
@@ -45,7 +45,7 @@ function OfferSection({ offer, nearbyOffers }: OfferSectionProps) {
               isActive={offer.isFavorite}
               width={31}
               height={33}
-              onClick={() => handleFavouriteUpdate(offer.id, !offer.isFavorite)}
+              onClick={() => handleFavoriteUpdate(offer.id, !offer.isFavorite)}
             />
           </div>
           <div className="offer__rating rating">
