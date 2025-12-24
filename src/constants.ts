@@ -43,6 +43,15 @@ export enum CityNames {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const DefaultCity: City = {
+  name: CityNames.Amsterdam,
+  location: {
+    latitude: 52.37454,
+    longitude: 4.897976,
+    zoom: 10
+  },
+};
+
 export const CITIES: City[] = [
   {
     name: CityNames.Paris,
@@ -68,14 +77,7 @@ export const CITIES: City[] = [
       zoom: 10
     },
   },
-  {
-    name: CityNames.Amsterdam,
-    location: {
-      latitude: 52.37454,
-      longitude: 4.897976,
-      zoom: 10
-    },
-  },
+  DefaultCity,
   {
     name: CityNames.Hamburg,
     location: {

@@ -4,8 +4,9 @@ import App from 'features/app';
 import { reviews } from 'mocks/reviews';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { fetchOffersAction } from 'store/api-actions';
+import { checkAuthAction, fetchOffersAction } from 'store/api-actions';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
