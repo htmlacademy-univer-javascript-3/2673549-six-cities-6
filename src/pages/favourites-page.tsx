@@ -4,7 +4,8 @@ import Page from 'components/base/page';
 import { Offer } from 'types/offer-types/offer';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '@constants';
-import { useOffers } from 'hooks/store-hooks/offer-hooks';
+import { useAppSelector } from 'hooks/index';
+import { getOffers } from 'store/offers-data/selectors';
 
 function getFavouritesByCity(offers: Offer[]) {
   return offers.reduce<Record<string, Offer[]>>((acc, offer) => {
@@ -20,7 +21,7 @@ function getFavouritesByCity(offers: Offer[]) {
 }
 
 function FavouritesPage(): JSX.Element {
-  const offers = useOffers();
+  const offers = useAppSelector(getOffers);
   const favouriteOffers = offers.filter((offer) => offer.isFavourite);
   const offersByCities = getFavouritesByCity(favouriteOffers);
 

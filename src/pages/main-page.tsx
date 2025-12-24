@@ -3,7 +3,7 @@ import PageHeader from 'components/base/page-header';
 import { Cities } from 'components/main-page/cities';
 import { LocationList } from 'components/main-page/location-list';
 import { useAppDispatch } from 'hooks/index';
-import { setCity } from 'store/action';
+import { setCity } from 'store/offers-data/offers-data';
 import { CITIES, CityNames } from '@constants';
 
 function MainPage(): JSX.Element {
@@ -16,7 +16,7 @@ function MainPage(): JSX.Element {
       return;
     }
 
-    dispatch(setCity({ city: activeCity }));
+    dispatch(setCity(activeCity));
   };
 
   return (

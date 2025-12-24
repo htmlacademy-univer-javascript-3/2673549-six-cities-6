@@ -9,10 +9,12 @@ import NotFoundPage from './not-found-page';
 import LoadingScreen from './loading-screen';
 import { useAppSelector } from 'hooks';
 import { AppRoute, AuthorizationStatus } from '@constants';
+import { getAuthorizationStatus } from 'store/user-process/selectors';
+import { getOfferDataLoadingStatus } from 'store/selected-offer-data/selectors';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOffersDataLoading = useAppSelector(getOfferDataLoadingStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (

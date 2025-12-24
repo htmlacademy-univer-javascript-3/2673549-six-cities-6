@@ -4,23 +4,23 @@ import ReviewForm from 'components/review/review-form';
 import PrivateComponent from 'components/base/private-component';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { fetchOfferReviewsAction } from 'store/api-actions';
-import { loadOfferReviews } from 'store/action';
+import {
+  getReviews,
+  getReviewSendingStatus,
+  getSelectedOffer
+} from 'store/selected-offer-data/selectors';
 import { AuthorizationStatus } from '@constants';
 
 function ReviewList() {
   const dispatch = useAppDispatch();
-  const selectedOffer = useAppSelector((state) => state.selectedOffer);
-  const isReviewDataPosting = useAppSelector((state) => state.isReviewDataPosting);
-  const reviews = useAppSelector((state) => state.reviews);
+  const selectedOffer = useAppSelector(getSelectedOffer);
+  const isReviewDataPosting = useAppSelector(getReviewSendingStatus);
+  const reviews = useAppSelector(getReviews);
 
   useEffect(() => {
     if (selectedOffer?.id) {
       dispatch(fetchOfferReviewsAction(selectedOffer?.id));
     }
-
-    return () => {
-      dispatch(loadOfferReviews([]));
-    };
   }, [dispatch, selectedOffer?.id, isReviewDataPosting]);
 
   return (

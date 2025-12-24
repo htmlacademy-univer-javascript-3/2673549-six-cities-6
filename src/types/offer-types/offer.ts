@@ -1,4 +1,4 @@
-import { City } from './сity';
+import { City } from '../city';
 import { Location } from './location';
 
 export type Offers = Offer[];

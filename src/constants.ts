@@ -1,4 +1,4 @@
-import { City } from 'types/offer-types/сity';
+import { City } from 'types/city';
 
 export const MAX_RATING: number = 5;
 export const MIN_COMMENT_SIZE: number = 50;

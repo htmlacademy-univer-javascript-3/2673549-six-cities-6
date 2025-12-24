@@ -1,17 +1,18 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
-import { AppRoute, AuthorizationStatus } from '@constants';
 import { logoutAction } from 'store/api-actions';
-import React from 'react';
+import { getAuthorizationStatus, getUserData } from 'store/user-process/selectors';
+import { AppRoute, AuthorizationStatus } from '@constants';
 
 type PageHeaderProps = {
   hideNavigation?: boolean;
 }
 
 function PageHeader({ hideNavigation = false }: PageHeaderProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const authorized = authorizationStatus === AuthorizationStatus.Auth;
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {

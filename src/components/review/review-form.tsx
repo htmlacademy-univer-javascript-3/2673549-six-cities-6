@@ -2,8 +2,8 @@ import { ChangeEvent, useState } from 'react';
 import RatingInput from './rating-input';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { sendOfferReviewAction } from 'store/api-actions';
-import { setError } from 'store/action';
-import { ERROR, MAX_COMMENT_SIZE, MIN_COMMENT_SIZE } from '@constants';
+import { getReviewSendingStatus, getSelectedOffer } from 'store/selected-offer-data/selectors';
+import { MAX_COMMENT_SIZE, MIN_COMMENT_SIZE } from '@constants';
 
 const ratingMap = {
   5: 'perfect',
@@ -15,8 +15,8 @@ const ratingMap = {
 
 function ReviewForm() {
   const dispatch = useAppDispatch();
-  const offer = useAppSelector((state) => state.selectedOffer);
-  const isReviewDataPosting = useAppSelector((state) => state.isReviewDataPosting);
+  const offer = useAppSelector(getSelectedOffer);
+  const isReviewDataSending = useAppSelector(getReviewSendingStatus);
 
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
@@ -30,12 +30,11 @@ function ReviewForm() {
   }
 
   function canSubmitReview() {
-    return !isReviewDataPosting && rating && comment.length > MIN_COMMENT_SIZE && comment.length < MAX_COMMENT_SIZE;
+    return !isReviewDataSending && rating && comment.length > MIN_COMMENT_SIZE && comment.length < MAX_COMMENT_SIZE;
   }
 
   function submitReview() {
     if (!offer) {
-      dispatch(setError(ERROR.UnexpectedError));
       return;
     }
 
