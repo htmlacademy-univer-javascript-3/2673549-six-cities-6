@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Offer } from 'types/offer-types/offer';
 import { BookmarkButton } from './bookmark-button';
 import { getPercentage } from 'lib/number-utils';
+import { capitalize } from 'lib/string-utils';
 import { useFavoriteOfferUpdate } from 'hooks/use-favorite-offer-update';
 import { AppRoute, MAX_RATING, PlaceCardFeature } from '@constants';
 import React from 'react';
@@ -70,14 +71,14 @@ export function PlaceCard({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${getPercentage(offer.rating, MAX_RATING)}%` }}></span>
+            <span style={{ width: `${getPercentage(Math.round(offer.rating), MAX_RATING)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{capitalize(offer.type)}</p>
       </div>
     </ article>
   );
