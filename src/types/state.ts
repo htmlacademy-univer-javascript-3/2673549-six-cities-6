@@ -6,6 +6,10 @@ import { City } from 'types/city';
 import { store } from 'store/index';
 import { AuthorizationStatus } from '@constants';
 
+export type ServiceData = {
+  error: string | null;
+}
+
 export type OffersData = {
   city: City;
   offers: Offers;
