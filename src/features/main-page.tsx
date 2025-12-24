@@ -2,22 +2,21 @@ import { Link } from 'react-router-dom';
 import Page from 'components/base/page';
 import { Cities } from 'components/main-page/cities';
 import { LocationList } from 'components/main-page/location-list';
-import { useAppDispatch, useAppSelector } from 'hooks/index';
-import { setCity, setOffers } from 'store/action';
-import { offers } from 'mocks/offers';
+import { useAppDispatch } from 'hooks/index';
+import { setCity } from 'store/action';
 import { AppRoute, CITIES, CityNames } from '@constants';
 
 function MainPage(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.city);
-  const activeOffers = useAppSelector((state) => state.offers);
-
   const dispatch = useAppDispatch();
 
   const handleChangeCity = (cityName: CityNames) => {
-    const nexActiveCity = CITIES.find((city) => city.name === cityName)!;
-    dispatch(setCity({ city: nexActiveCity }));
-    const nextActiveOffers = offers.filter((offer) => offer.city.name === nexActiveCity.name);
-    dispatch(setOffers({ offers: nextActiveOffers }));
+    const activeCity = CITIES.find((city) => city.name === cityName);
+
+    if (!activeCity) {
+      return;
+    }
+
+    dispatch(setCity({ city: activeCity }));
   };
 
   return (
@@ -55,9 +54,9 @@ function MainPage(): JSX.Element {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
-            <LocationList activeCity={activeCity.name} onCityChange={handleChangeCity}/>
+            <LocationList onCityChange={handleChangeCity}/>
           </div>
-          <Cities activeCity={activeCity} offers={activeOffers}/>
+          <Cities/>
         </main>
       </div>
     </Page>
