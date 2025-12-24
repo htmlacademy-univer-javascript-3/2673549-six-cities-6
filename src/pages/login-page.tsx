@@ -4,7 +4,7 @@ import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import { useAppDispatch } from 'hooks/index';
 import { setCity } from 'store/offers-data/offers-data';
-import { fetchOffersAction, loginAction } from 'store/api-actions';
+import { loginAction } from 'store/api-actions';
 import { getRandomElement } from 'lib/array-utils';
 import { AppRoute, CITIES, DefaultCity } from '@constants';
 

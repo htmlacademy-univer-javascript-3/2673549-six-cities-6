@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FavoriteOffersData } from 'types/state';
-import { fetchFavoriteOffersAction, updateFavoriteOfferStatus } from 'store/api-actions';
+import { fetchFavoriteOffersAction, logoutAction, updateFavoriteOfferStatus } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
 
 const initialState: FavoriteOffersData = {
@@ -46,8 +46,10 @@ export const favoriteOffersData = createSlice({
 
         if (updatedOffer.isFavorite && updatedOfferIndex === -1) {
           state.offers = [updatedOffer, ...state.offers];
-        } else {
+        } else if (updatedOffer.isFavorite) {
           state.offers[updatedOfferIndex] = updatedOffer;
+        } else {
+          state.offers = state.offers.filter((offer) => offer.id !== updatedOffer.id);
         }
 
         state.isOfferStatusUpdating = false;
@@ -56,6 +58,10 @@ export const favoriteOffersData = createSlice({
       .addCase(updateFavoriteOfferStatus.rejected, (state) => {
         state.isOfferStatusUpdating = false;
         state.hasError = true;
+      })
+
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.offers = [];
       });
   }
 });

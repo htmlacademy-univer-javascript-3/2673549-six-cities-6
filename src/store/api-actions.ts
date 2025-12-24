@@ -134,6 +134,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
     const { data } = await api.post<UserData>(ApiRouteBuilder.Login(), { email, password });
     saveToken(data.token);
     dispatch(fetchOffersAction());
+    dispatch(fetchFavoriteOffersAction());
     return data;
   },
 );

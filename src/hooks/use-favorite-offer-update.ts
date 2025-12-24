@@ -15,6 +15,6 @@ export function useFavoriteOfferUpdate() {
       return;
     }
 
-    dispatch(updateFavoriteOfferStatus({offerId, setIsFavorite}));
+    dispatch(updateFavoriteOfferStatus({ offerId, setIsFavorite }));
   };
 }

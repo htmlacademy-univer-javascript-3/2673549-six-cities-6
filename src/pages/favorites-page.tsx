@@ -1,26 +1,17 @@
-import { useEffect } from 'react';
 import LoadingScreen from 'pages/login-page';
 import { FavoriteLocationItems } from 'components/favorites-page/favorite-location-items';
 import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import Footer from 'components/base/footer';
-import { useAppDispatch, useAppSelector } from 'hooks/index';
-import { clearFavoriteOffers } from 'store/favorite-offers-data/favorite-offers-data';
-import { getFavoriteOffersByCity, getFavoriteOffersDataLoadingStatus } from 'store/favorite-offers-data/selectors';
-import { fetchFavoriteOffersAction } from 'store/api-actions';
+import { useAppSelector } from 'hooks/index';
+import {
+  getFavoriteOffersByCity,
+  getFavoriteOffersDataLoadingStatus
+} from 'store/favorite-offers-data/selectors';
 
 function FavoritesPage(): JSX.Element {
-  const dispatch = useAppDispatch();
   const isFavoriteOffersDataLoading = useAppSelector(getFavoriteOffersDataLoadingStatus);
   const offersByCities = useAppSelector(getFavoriteOffersByCity);
-
-  useEffect(() => {
-    dispatch(fetchFavoriteOffersAction());
-
-    return () => {
-      dispatch(clearFavoriteOffers);
-    };
-  }, [dispatch]);
 
   if (isFavoriteOffersDataLoading) {
     return <LoadingScreen />;

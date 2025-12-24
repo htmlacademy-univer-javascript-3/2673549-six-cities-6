@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { logoutAction } from 'store/api-actions';
 import { getAuthorizationStatus, getUserData } from 'store/user-process/selectors';
 import { AppRoute, AuthorizationStatus } from '@constants';
+import { getFavoriteOffers } from 'store/favorite-offers-data/selectors';
 
 type PageHeaderProps = {
   hideNavigation?: boolean;
@@ -11,8 +12,9 @@ type PageHeaderProps = {
 
 function PageHeader({ hideNavigation = false }: PageHeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoritesCount = useAppSelector(getFavoriteOffers).length;
+  const email = useAppSelector(getUserData)?.email ?? 'User';
   const authorized = authorizationStatus === AuthorizationStatus.Auth;
-  const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -42,8 +44,8 @@ function PageHeader({ hideNavigation = false }: PageHeaderProps): JSX.Element {
                     {((authorized)
                       ? (
                         <React.Fragment>
-                          <span className="header__user-name user__name">{userData?.email ?? 'User'}</span>
-                          <span className="header__favorite-count">3</span>
+                          <span className="header__user-name user__name">{email}</span>
+                          <span className="header__favorite-count">{favoritesCount}</span>
                         </React.Fragment>
                       )
                       : <span className="header__login">Sign in</span>
