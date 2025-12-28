@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ReviewItem from 'components/review/review-item';
 import ReviewForm from 'components/review/review-form';
-import PrivateComponent from 'components/base/private-component';
+import PrivateComponent from 'components/base/private-component/private-component';
 import { getSortReviewsByDateDescending } from 'lib/sort-utils';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { fetchOfferReviewsAction } from 'store/api-actions';

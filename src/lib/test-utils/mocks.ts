@@ -26,9 +26,9 @@ export const makeFakeUser = (): User => ({
   name: getRandomString(20)
 });
 
-export const makeFakeOffer = (): Offer => ({
+export const makeFakeOffer = (city?: City): Offer => ({
   id: getRandomString(10),
-  city: makeFakeCity(),
+  city: city ?? makeFakeCity(),
   goods: getRandomGoods(getRandomNumber(0, 10)),
   isFavorite: getRandomBoolean(),
   isPremium: getRandomBoolean(),

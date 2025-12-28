@@ -1,4 +1,4 @@
-import { FavoriteLocationItems } from 'components/favorites-page/favorite-location-items';
+import { FavoriteLocationItems } from 'components/favorites-page/favourite-location-items/favorite-location-items';
 import { Offers } from 'types/offer-types/offer';
 
 type FavoritesListProps = {
