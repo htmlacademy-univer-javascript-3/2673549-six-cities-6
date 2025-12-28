@@ -10,7 +10,6 @@ import HistoryRouter from 'components/history-route/history-route';
 import { createAPI } from 'services/api';
 import { State } from 'types/state';
 import { AppThunkDispatch } from './store-utils';
-import { UserData } from 'types/auth-types/user-data';
 
 export function withHistory(component: JSX.Element, history?: MemoryHistory) {
   const memoryHistory = history ?? createMemoryHistory();
