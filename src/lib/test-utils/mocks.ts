@@ -3,6 +3,7 @@ import { DetailedOffer } from 'types/offer-types/detailed-offer';
 import { Offer, OfferId, Offers } from 'types/offer-types/offer';
 import { Review, Reviews } from 'types/offer-types/review';
 import { UserData } from 'types/auth-types/user-data';
+import { AuthData } from 'types/auth-types/auth-data';
 import { User } from 'types/user';
 import { City } from 'types/city';
 import { getRandomCityName, getRandomLocation } from './city-utils';
@@ -39,9 +40,9 @@ export const makeFakeOffer = (): Offer => ({
   type: getRandomString(10),
 });
 
-export const makeFakeFavoriteOffer = (): Offer => ({
+export const makeFakeFavoriteOffer = (isFavorite: boolean = true): Offer => ({
   ...makeFakeOffer(),
-  isFavorite: true,
+  isFavorite: isFavorite,
 });
 
 export const makeFakeDetailedOffer = (): DetailedOffer => ({
@@ -65,9 +66,14 @@ export const makeFakeUserData = (): UserData => ({
   token: makeFakeAuthToken(),
 });
 
+export const makeFakeAuthData = (): AuthData => ({
+  login: internet.email(),
+  password: internet.password()
+});
+
 export const makeFakeFavoriteOffers = (count: number): Offers => getRandomArray(count, () => makeFakeFavoriteOffer());
 
-export const makeFakeReview = (offerId: OfferId) : Review => ({
+export const makeFakeReview = (offerId: OfferId): Review => ({
   id: getRandomString(20),
   offerId: offerId,
   user: makeFakeUserData(),
@@ -76,4 +82,4 @@ export const makeFakeReview = (offerId: OfferId) : Review => ({
   comment: getRandomString(getRandomNumber(MIN_COMMENT_SIZE, MAX_COMMENT_SIZE)),
 });
 
-export const makeFakeReviews = (offerId: OfferId, count: number): Reviews => getRandomArray(count , () => makeFakeReview(offerId));
+export const makeFakeReviews = (offerId: OfferId, count: number): Reviews => getRandomArray(count, () => makeFakeReview(offerId));
