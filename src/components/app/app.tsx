@@ -6,7 +6,7 @@ import FavoritesPage from 'pages/favourite-page/favorites-page';
 import OfferPage from 'pages/offer-page/offer-page';
 import NotFoundPage from 'pages/not-found-page/not-found-page';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
-import PrivateRoute from 'components/base/private-route';
+import PrivateRoute from 'components/base/private-route/private-route';
 import { useAppSelector } from 'hooks';
 import { getAuthorizationStatus } from 'store/user-process/selectors';
 import { getOffersDataLoadingStatus } from 'store/offers-data/selectors';

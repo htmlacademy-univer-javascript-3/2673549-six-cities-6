@@ -20,7 +20,7 @@ export default defineConfig({
       'services': path.resolve(__dirname, './src/services'),
       'browser-history': path.resolve(__dirname, './src/browser-history'),
       '@constants': path.resolve(__dirname, './src/constants'),
-    }
+    },
   },
   test: {
     globals: true,
