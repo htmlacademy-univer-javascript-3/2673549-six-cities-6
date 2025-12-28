@@ -4,3 +4,7 @@ export function getMonthWithYear(date: Date) {
     year: 'numeric'
   });
 }
+
+export function getRandomDateISO(): string {
+  return new Date().toISOString();
+}

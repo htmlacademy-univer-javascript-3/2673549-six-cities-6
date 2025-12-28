@@ -3,8 +3,8 @@ import { useAppSelector } from '.';
 import { getFavoriteOffers } from 'store/favorite-offers-data/selectors';
 import { useMemo } from 'react';
 
-function getOfferGroupsByCity(favouriteOffers: Offers): Record<string, Offers> {
-  return favouriteOffers.reduce<Record<string, Offers>>((acc, offer) => {
+function getOfferGroupsByCity(favoriteOffers: Offers): Record<string, Offers> {
+  return favoriteOffers.reduce<Record<string, Offers>>((acc, offer) => {
     const cityName = offer.city.name;
 
     if (!acc[cityName]) {
@@ -17,9 +17,9 @@ function getOfferGroupsByCity(favouriteOffers: Offers): Record<string, Offers> {
 }
 
 export function useFavoriteOffersByCity(): Record<string, Offers> {
-  const favouriteOffers = useAppSelector(getFavoriteOffers);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
   return useMemo(
-    () => getOfferGroupsByCity(favouriteOffers),
-    [favouriteOffers]
+    () => getOfferGroupsByCity(favoriteOffers),
+    [favoriteOffers]
   );
 }

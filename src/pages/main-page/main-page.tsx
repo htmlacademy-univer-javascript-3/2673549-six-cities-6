@@ -1,7 +1,7 @@
 import Page from 'components/base/page';
 import PageHeader from 'components/base/page-header';
 import { Cities } from 'components/main-page/cities';
-import EmptyOffersList from 'components/main-page/empty-offers-list';
+import EmptyOffersList from 'components/main-page/empty-offers-list/empty-offers-list';
 import { LocationList } from 'components/main-page/location-list';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { setCity } from 'store/offers-data/offers-data';

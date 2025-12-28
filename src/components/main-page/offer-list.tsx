@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import PlaceCard from 'components/cards/place-card';
+import PlaceCard from 'components/cards/place-card/place-card';
 import { Offer, OfferId } from 'types/offer-types/offer';
 
 type OffersListProps = {
@@ -27,7 +27,7 @@ export default function OffersList({ offers, onOfferHover }: OffersListProps): J
   );
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" data-testid="offer-list">
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}

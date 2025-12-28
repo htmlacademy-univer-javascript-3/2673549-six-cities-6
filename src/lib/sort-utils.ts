@@ -1,4 +1,5 @@
 import { Offer } from 'types/offer-types/offer';
+import { Reviews } from 'types/offer-types/review';
 import { SortDirection } from 'types/sort-direction';
 
 const sortDirectionToComparer = new Map<SortDirection, (a: Offer, b: Offer) => number>([
@@ -10,4 +11,8 @@ const sortDirectionToComparer = new Map<SortDirection, (a: Offer, b: Offer) => n
 
 export function getSorted(offers: Offer[], sortDirection: SortDirection): Offer[] {
   return [...offers].sort(sortDirectionToComparer.get(sortDirection));
+}
+
+export function getSortReviewsByDateDescending(reviews: Reviews): Reviews {
+  return [...reviews].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

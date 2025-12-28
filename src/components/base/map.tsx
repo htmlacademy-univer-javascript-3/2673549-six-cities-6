@@ -11,7 +11,7 @@ type MapProps = {
   className: string;
   city: City;
   offers: Offers;
-  selectedOffer: Offer | undefined;
+  selectedOffer?: Offer | null;
 }
 
 const defaultCustomIcon = new Icon({
@@ -41,7 +41,7 @@ function Map({ className, city, offers, selectedOffer }: MapProps) {
 
         marker
           .setIcon(
-            selectedOffer !== undefined && offer.id === selectedOffer.id
+            offer.id === selectedOffer?.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offers } from 'types/offer-types/offer';
-import PlaceCard from 'components/cards/place-card';
+import PlaceCard from 'components/cards/place-card/place-card';
 import { AppRoute, PlaceCardFeature } from '@constants';
 
 type FavoriteLocationItemsProps = {
@@ -10,10 +10,14 @@ type FavoriteLocationItemsProps = {
 
 export function FavoriteLocationItems({ city, offers }: FavoriteLocationItemsProps) {
   return (
-    <li className="favorites__locations-items">
+    <li className="favorites__locations-items" data-testid="favorite-location-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <Link className="locations__item-link" to={AppRoute.Main}>
+          <Link
+            className="locations__item-link"
+            to={AppRoute.Main}
+            data-testid="city-name"
+          >
             <span>{city}</span>
           </Link>
         </div>

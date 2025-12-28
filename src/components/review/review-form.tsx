@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import RatingInput from './rating-input';
 import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { sendOfferReviewAction } from 'store/api-actions';
@@ -20,6 +20,11 @@ function ReviewForm() {
 
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
+  const [showError, setShowError] = useState<boolean>(false);
+
+  useEffect(() => {
+    setShowError(false);
+  }, [rating, comment]);
 
   function handleTextAreaChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.target.value);
@@ -34,6 +39,8 @@ function ReviewForm() {
   }
 
   function submitReview() {
+    setShowError(false);
+
     if (!offer) {
       return;
     }
@@ -43,7 +50,9 @@ function ReviewForm() {
         await dispatch(sendOfferReviewAction({ offerId: offer.id, rating, comment })).unwrap();
         setRating(0);
         setComment('');
-      } catch { /* empty */ }
+      } catch {
+        setShowError(true);
+      }
     };
 
     sendReview();
@@ -70,6 +79,15 @@ function ReviewForm() {
         onChange={handleTextAreaChange}
       >
       </textarea>
+
+      {
+        showError && (
+          <div className="reviews__error" style={{ color: 'red', margin: '10px 0' }}>
+            {'Failed to submit review. Please try again.'}
+          </div>
+        )
+      }
+
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and

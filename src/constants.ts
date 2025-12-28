@@ -17,7 +17,7 @@ export enum AppRoute {
   NotFound = '/not-found',
 }
 
-export const TIMEOUT_SHOW_ERROR = 2000;
+export const TIMEOUT_SHOW_ERROR = 5000;
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

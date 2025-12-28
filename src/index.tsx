@@ -1,13 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from 'pages/app';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import ReactDOM from 'react-dom/client';
+import App from 'components/app/app';
+import ErrorMessage from 'components/base/error-message/error-message';
+import HistoryRouter from 'components/history-route/history-route';
+import { store } from 'store';
 import {
   checkAuthAction,
   fetchFavoriteOffersAction,
   fetchOffersAction
 } from 'store/api-actions';
+import browserHistory from 'browser-history';
 
 store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
@@ -20,7 +23,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <HistoryRouter history={browserHistory}>
+        <ErrorMessage />
+        <App />
+      </HistoryRouter>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode >
 );
