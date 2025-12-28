@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { FavoriteOffersData } from 'types/state';
 import { fetchFavoriteOffersAction, logoutAction, updateFavoriteOfferStatus } from 'store/api-actions';
 import { NameSpace } from 'store/constants';
@@ -16,9 +16,6 @@ export const favoriteOffersData = createSlice({
   reducers: {
     clearFavoriteOffers: (state) => {
       state.offers = [];
-    },
-    setHasError: (state, action: PayloadAction<boolean>) => {
-      state.hasError = action.payload;
     },
   },
   extraReducers(builder) {
@@ -66,4 +63,4 @@ export const favoriteOffersData = createSlice({
   }
 });
 
-export const { clearFavoriteOffers, setHasError } = favoriteOffersData.actions;
+export const { clearFavoriteOffers } = favoriteOffersData.actions;

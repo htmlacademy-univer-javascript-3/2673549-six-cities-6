@@ -18,9 +18,6 @@ export const offersData = createSlice({
   reducers: {
     setCity: (state, action: PayloadAction<City>) => {
       state.city = action.payload;
-    },
-    setHasError: (state, action: PayloadAction<boolean>) => {
-      state.hasError = action.payload;
     }
   },
   extraReducers(builder) {
@@ -53,4 +50,4 @@ export const offersData = createSlice({
   }
 });
 
-export const { setCity, setHasError } = offersData.actions;
+export const { setCity } = offersData.actions;
