@@ -1,4 +1,6 @@
 import { State } from 'types/state';
 import { NameSpace } from 'store/constants';
 
-export const getError = (state: State): string | null => state[NameSpace.Service].error;
+type ServiceState = Pick<State, NameSpace.Service>;
+
+export const getError = (state: ServiceState): string | null => state[NameSpace.Service].error;

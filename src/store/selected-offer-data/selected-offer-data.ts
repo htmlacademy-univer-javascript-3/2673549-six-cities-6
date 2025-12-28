@@ -20,7 +20,6 @@ const initialState: SelectedOfferData = {
   isNearbyOffersDataLoading: false,
   isReviewsDataLoading: false,
   isReviewDataSending: false,
-  hasError: false
 };
 
 export const selectedOfferData = createSlice({

@@ -4,16 +4,18 @@ import { Offers } from 'types/offer-types/offer';
 import { DetailedOffer } from 'types/offer-types/detailed-offer';
 import { Reviews } from 'types/offer-types/review';
 
-export const getSelectedOffer = (state: State): DetailedOffer | null => state[NameSpace.SelectedOffer].selectedOffer;
+type SelectedOfferState = Pick<State, NameSpace.SelectedOffer>;
 
-export const getNearbyOffers = (state: State): Offers => state[NameSpace.SelectedOffer].nearbyOffers;
+export const getSelectedOffer = (state: SelectedOfferState): DetailedOffer | null => state[NameSpace.SelectedOffer].selectedOffer;
 
-export const getReviews = (state: State): Reviews => state[NameSpace.SelectedOffer].reviews;
+export const getNearbyOffers = (state: SelectedOfferState): Offers => state[NameSpace.SelectedOffer].nearbyOffers;
 
-export const getOfferDataLoadingStatus = (state: State): boolean => state[NameSpace.SelectedOffer].isOfferDataLoading;
+export const getReviews = (state: SelectedOfferState): Reviews => state[NameSpace.SelectedOffer].reviews;
 
-export const getNearbyOffersLoadingStatus = (state: State): boolean => state[NameSpace.SelectedOffer].isNearbyOffersDataLoading;
+export const getOfferDataLoadingStatus = (state: SelectedOfferState): boolean => state[NameSpace.SelectedOffer].isOfferDataLoading;
 
-export const getReviewLoadingStatus = (state: State): boolean => state[NameSpace.SelectedOffer].isReviewsDataLoading;
+export const getNearbyOffersLoadingStatus = (state: SelectedOfferState): boolean => state[NameSpace.SelectedOffer].isNearbyOffersDataLoading;
 
-export const getReviewSendingStatus = (state: State): boolean => state[NameSpace.SelectedOffer].isReviewDataSending;
+export const getReviewLoadingStatus = (state: SelectedOfferState): boolean => state[NameSpace.SelectedOffer].isReviewsDataLoading;
+
+export const getReviewSendingStatus = (state: SelectedOfferState): boolean => state[NameSpace.SelectedOffer].isReviewDataSending;

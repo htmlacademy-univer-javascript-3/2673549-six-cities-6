@@ -2,6 +2,8 @@ import { AuthorizationStatus } from '@constants';
 import { NameSpace } from 'store/constants';
 import { State } from 'types/state';
 
-export const getAuthorizationStatus = (state: State): AuthorizationStatus => state[NameSpace.User].authorizationStatus;
+type UserState = Pick<State, NameSpace.User>;
 
-export const getUserData = (state: State) => state[NameSpace.User].userData;
+export const getAuthorizationStatus = (state: UserState): AuthorizationStatus => state[NameSpace.User].authorizationStatus;
+
+export const getUserData = (state: UserState) => state[NameSpace.User].userData;

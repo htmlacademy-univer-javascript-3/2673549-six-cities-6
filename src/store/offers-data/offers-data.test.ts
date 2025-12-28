@@ -9,14 +9,12 @@ describe('OffersData Slice', () => {
     city: DefaultCity,
     offers: [],
     isOffersDataLoading: false,
-    hasError: false,
   };
 
   const fakeState: OffersData = {
     city: makeFakeCity(),
     offers: makeFakeOffers(getRandomNumber(0, 50)),
     isOffersDataLoading: false,
-    hasError: false
   };
 
   const fakeCity = makeFakeCity();

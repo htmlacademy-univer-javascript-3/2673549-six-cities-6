@@ -1,21 +1,19 @@
 import { clearFavoriteOffers, favoriteOffersData } from './favorite-offers-data';
 import { FavoriteOffersData } from 'types/state';
-import { makeFakeFavouriteOffers } from 'lib/test-utils/mocks';
+import { makeFakeFavoriteOffers } from 'lib/test-utils/mocks';
 import { getRandomNumber } from 'lib/number-utils';
 
-describe('FavouriteOffersData Slice', () => {
+describe('FavoriteOffersData Slice', () => {
   const initialState: FavoriteOffersData = {
     offers: [],
     isOffersDataLoading: false,
     isOfferStatusUpdating: false,
-    hasError: false,
   };
 
   const fakeState: FavoriteOffersData = {
-    offers: makeFakeFavouriteOffers(getRandomNumber(0, 15)),
+    offers: makeFakeFavoriteOffers(getRandomNumber(0, 15)),
     isOffersDataLoading: false,
     isOfferStatusUpdating: false,
-    hasError: false,
   };
 
   it('should return initial state with empty action', () => {

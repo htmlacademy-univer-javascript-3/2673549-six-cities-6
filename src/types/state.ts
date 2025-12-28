@@ -14,14 +14,12 @@ export type OffersData = {
   city: City;
   offers: Offers;
   isOffersDataLoading: boolean;
-  hasError: boolean;
 };
 
 export type FavoriteOffersData = {
   offers: Offers;
   isOffersDataLoading: boolean;
   isOfferStatusUpdating: boolean;
-  hasError: boolean;
 };
 
 export type SelectedOfferData = {
@@ -32,7 +30,6 @@ export type SelectedOfferData = {
   isNearbyOffersDataLoading: boolean;
   isReviewsDataLoading: boolean;
   isReviewDataSending: boolean;
-  hasError: boolean;
 }
 
 export type UserProcess = {

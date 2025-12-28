@@ -12,7 +12,6 @@ describe('SelectedOfferData Slice', () => {
     isNearbyOffersDataLoading: false,
     isReviewsDataLoading: false,
     isReviewDataSending: false,
-    hasError: false
   };
 
   const fakeState: SelectedOfferData = {
@@ -23,7 +22,6 @@ describe('SelectedOfferData Slice', () => {
     isNearbyOffersDataLoading: false,
     isReviewsDataLoading: false,
     isReviewDataSending: false,
-    hasError: false
   };
 
   it('should return initial state with empty action', () => {

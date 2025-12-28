@@ -3,15 +3,17 @@ import { State } from 'types/state';
 import { Offers } from 'types/offer-types/offer';
 import { NameSpace } from 'store/constants';
 
-export const getSelectedCity = (state: State): City => state[NameSpace.Offers].city;
+type OffersState = Pick<State, NameSpace.Offers>;
 
-export const getOffers = (state: State): Offers => state[NameSpace.Offers].offers;
+export const getSelectedCity = (state: OffersState): City => state[NameSpace.Offers].city;
 
-export const getSelectedCityOffers = (state: State): Offers => {
+export const getOffers = (state: OffersState): Offers => state[NameSpace.Offers].offers;
+
+export const getSelectedCityOffers = (state: OffersState): Offers => {
   const city = state[NameSpace.Offers].city;
   return state[NameSpace.Offers].offers.filter((offer) =>
     offer.city.name === city.name
   );
 };
 
-export const getOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Offers].isOffersDataLoading;
+export const getOffersDataLoadingStatus = (state: OffersState): boolean => state[NameSpace.Offers].isOffersDataLoading;

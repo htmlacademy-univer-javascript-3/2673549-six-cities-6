@@ -9,7 +9,6 @@ const initialState: OffersData = {
   city: DefaultCity,
   offers: [],
   isOffersDataLoading: false,
-  hasError: false,
 };
 
 export const offersData = createSlice({
@@ -24,7 +23,6 @@ export const offersData = createSlice({
     builder
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersDataLoading = true;
-        state.hasError = false;
       })
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.isOffersDataLoading = false;
@@ -32,7 +30,6 @@ export const offersData = createSlice({
       })
       .addCase(fetchOffersAction.rejected, (state) => {
         state.isOffersDataLoading = false;
-        state.hasError = true;
       })
 
       .addCase(updateFavoriteOfferStatus.fulfilled, (state, action) => {

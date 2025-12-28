@@ -3,7 +3,7 @@ import PageHeader from 'components/base/page-header';
 import Page from 'components/base/page';
 import Footer from 'components/base/footer';
 import { FavoritesList } from 'components/favorites-page/favorites-list';
-import { EmptyFavoritesList } from 'components/favorites-page/empty-favourites-list';
+import { EmptyFavoritesList } from 'components/favorites-page/empty-favorites-list';
 import { useAppSelector } from 'hooks/index';
 import { useFavoriteOffersByCity } from 'hooks/use-favorite-offers-by-city';
 import { getFavoriteOffersDataLoadingStatus } from 'store/favorite-offers-data/selectors';
@@ -11,7 +11,7 @@ import { getFavoriteOffersDataLoadingStatus } from 'store/favorite-offers-data/s
 function FavoritesPage(): JSX.Element {
   const isFavoriteOffersDataLoading = useAppSelector(getFavoriteOffersDataLoadingStatus);
   const offersByCities = useFavoriteOffersByCity();
-  const hasAnyFavourites = Object.keys(offersByCities).length > 0;
+  const hasAnyFavorites = Object.keys(offersByCities).length > 0;
 
   if (isFavoriteOffersDataLoading) {
     return <LoadingScreen />;
@@ -22,7 +22,7 @@ function FavoritesPage(): JSX.Element {
       <div className="page">
         <PageHeader />
         {
-          hasAnyFavourites
+          hasAnyFavorites
             ? <FavoritesList offersByCities={offersByCities} />
             : <EmptyFavoritesList />
         }
